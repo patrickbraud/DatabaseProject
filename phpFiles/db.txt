@@ -2,25 +2,43 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 16, 2015 at 09:55 PM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 16, 2015 at 11:00 PM
 -- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `ProjectDB`
+-- Database: `projectdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Course`
+-- Table structure for table `assign`
 --
 
-CREATE TABLE IF NOT EXISTS `Course` (
+CREATE TABLE IF NOT EXISTS `assign` (
+  `CRN` int(11) NOT NULL DEFAULT '0',
+  `instructor_name` char(100) NOT NULL DEFAULT '',
+  `ta_name` char(100) NOT NULL DEFAULT '',
+  `time` int(11) NOT NULL DEFAULT '0',
+  `room` int(11) NOT NULL DEFAULT '0',
+  `building` char(100) NOT NULL DEFAULT '',
+  `days` char(100) NOT NULL DEFAULT '',
+  `text` char(30) DEFAULT NULL,
+  `new` char(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
+
+CREATE TABLE IF NOT EXISTS `course` (
   `code` char(50) NOT NULL,
   `isReq` tinyint(1) NOT NULL,
   `title` char(100) NOT NULL
@@ -29,10 +47,21 @@ CREATE TABLE IF NOT EXISTS `Course` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Info`
+-- Table structure for table `has`
 --
 
-CREATE TABLE IF NOT EXISTS `Info` (
+CREATE TABLE IF NOT EXISTS `has` (
+  `code` char(8) NOT NULL DEFAULT '',
+  `CRN` int(5) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `info`
+--
+
+CREATE TABLE IF NOT EXISTS `info` (
   `time` int(11) NOT NULL,
   `days` char(100) NOT NULL,
   `room` int(11) NOT NULL,
@@ -43,10 +72,10 @@ CREATE TABLE IF NOT EXISTS `Info` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Instructor`
+-- Table structure for table `instructor`
 --
 
-CREATE TABLE IF NOT EXISTS `Instructor` (
+CREATE TABLE IF NOT EXISTS `instructor` (
   `Name` char(100) NOT NULL,
   `hireDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -54,10 +83,22 @@ CREATE TABLE IF NOT EXISTS `Instructor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Section`
+-- Table structure for table `professor`
 --
 
-CREATE TABLE IF NOT EXISTS `Section` (
+CREATE TABLE IF NOT EXISTS `professor` (
+  `name` char(30) NOT NULL DEFAULT '',
+  `tenure` char(3) DEFAULT NULL,
+  `title` char(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section`
+--
+
+CREATE TABLE IF NOT EXISTS `section` (
   `secNum` int(11) NOT NULL,
   `limit` int(11) NOT NULL,
   `enrollment` int(11) NOT NULL,
@@ -67,12 +108,23 @@ CREATE TABLE IF NOT EXISTS `Section` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TA`
+-- Table structure for table `ta`
 --
 
-CREATE TABLE IF NOT EXISTS `TA` (
+CREATE TABLE IF NOT EXISTS `ta` (
   `name` char(100) NOT NULL,
   `hours` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE IF NOT EXISTS `teacher` (
+  `name` char(30) NOT NULL DEFAULT '',
+  `type` char(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -80,31 +132,85 @@ CREATE TABLE IF NOT EXISTS `TA` (
 --
 
 --
--- Indexes for table `Course`
+-- Indexes for table `assign`
 --
-ALTER TABLE `Course`
+ALTER TABLE `assign`
+ ADD PRIMARY KEY (`CRN`,`instructor_name`,`ta_name`,`time`,`room`,`building`,`days`), ADD KEY `instructor_name` (`instructor_name`);
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
  ADD PRIMARY KEY (`code`);
 
 --
--- Indexes for table `Info`
+-- Indexes for table `has`
 --
-ALTER TABLE `Info`
+ALTER TABLE `has`
+ ADD PRIMARY KEY (`code`,`CRN`), ADD KEY `CRN` (`CRN`);
+
+--
+-- Indexes for table `info`
+--
+ALTER TABLE `info`
  ADD PRIMARY KEY (`time`,`days`);
 
 --
--- Indexes for table `Instructor`
+-- Indexes for table `instructor`
 --
-ALTER TABLE `Instructor`
+ALTER TABLE `instructor`
  ADD PRIMARY KEY (`Name`);
 
 --
--- Indexes for table `Section`
+-- Indexes for table `professor`
 --
-ALTER TABLE `Section`
+ALTER TABLE `professor`
+ ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
  ADD PRIMARY KEY (`CRN`);
 
 --
--- Indexes for table `TA`
+-- Indexes for table `ta`
 --
-ALTER TABLE `TA`
+ALTER TABLE `ta`
  ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
+ ADD PRIMARY KEY (`name`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assign`
+--
+ALTER TABLE `assign`
+ADD CONSTRAINT `assign_ibfk_1` FOREIGN KEY (`CRN`) REFERENCES `section` (`CRN`),
+ADD CONSTRAINT `assign_ibfk_2` FOREIGN KEY (`instructor_name`) REFERENCES `instructor` (`Name`);
+
+--
+-- Constraints for table `has`
+--
+ALTER TABLE `has`
+ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`code`) REFERENCES `course` (`code`),
+ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`CRN`) REFERENCES `section` (`CRN`);
+
+--
+-- Constraints for table `professor`
+--
+ALTER TABLE `professor`
+ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`Name`);
+
+--
+-- Constraints for table `teacher`
+--
+ALTER TABLE `teacher`
+ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`Name`);
