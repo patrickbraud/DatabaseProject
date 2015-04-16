@@ -38,7 +38,6 @@ Title: <input type="text" name="title" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 
-<br><br>
 <?php
     echo "<br>Input Course and Section Information<br>";
 	?>
@@ -64,7 +63,7 @@ Enrollment: <input type="text" name="enrollment" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Input Course and Section Information<br>";
+    echo "<br>Input TA Information<br>";
 	?>
 <form name='Input TA Info' action='insert_ta_info.php' method='post'>
 Section CRN: <input type="text" name="sectionCRN" value="">
@@ -72,6 +71,14 @@ Section CRN: <input type="text" name="sectionCRN" value="">
 Name: <input type="text" name="taName" value="">
 <br><br>
 Hours: <input type="text" name="taHours" value="">
+<br><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+<?php
+    echo "<br>Input Catalog Info<br>";
+	?>
+<form name='Input Catalog Year' action='insert_catalog_year.php' method='post'>
+Catalog Year: <input type="text" name="catalogYear" value="">
 <br><br>
 <input type="submit" name="submit" value="Submit">
 </form>
