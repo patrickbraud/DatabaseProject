@@ -16,9 +16,9 @@ li {
 <body>
 
 <ul>
-  <li><a href="page_one.php">page_one</a></li>
-  <li><a href="page_two.php">page_two</a></li>
-  <li><a href="page_three.php">page_three</a></li>
+  <li><a href="page_faculty_staff.php">Faculty/Staff</a></li>
+  <li><a href="page_professor.php">Professor</a></li>
+  <li><a href="page_business_manager.php">Business Manager</a></li>
 </ul>
 
 </body>
