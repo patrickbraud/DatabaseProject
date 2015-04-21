@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2015 at 11:00 PM
+-- Generation Time: Apr 21, 2015 at 08:43 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `projectdb`
+-- Database: `new design`
 --
 
 -- --------------------------------------------------------
@@ -21,16 +21,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `assign` (
-  `CRN` int(11) NOT NULL DEFAULT '0',
-  `instructor_name` char(100) NOT NULL DEFAULT '',
-  `ta_name` char(100) NOT NULL DEFAULT '',
-  `time` int(11) NOT NULL DEFAULT '0',
-  `room` int(11) NOT NULL DEFAULT '0',
-  `building` char(100) NOT NULL DEFAULT '',
-  `days` char(100) NOT NULL DEFAULT '',
-  `text` char(30) DEFAULT NULL,
-  `new` char(3) DEFAULT NULL
+  `crn` int(5) NOT NULL DEFAULT '0',
+  `instr_name` varchar(100) DEFAULT NULL,
+  `ta_name` varchar(100) DEFAULT NULL,
+  `ta_hours` int(2) DEFAULT NULL,
+  `new` varchar(3) DEFAULT NULL,
+  `textBook` varchar(100) DEFAULT NULL,
+  `info_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `assign`
+--
+
+INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `textBook`, `info_id`) VALUES
+(36429, 'Lim', 'Elham Hojati', 9, 'yes', 'Computer Organization and Design', 7),
+(59167, 'Zhang', 'Tara Parker', 12, 'no', 'First Course in Database Design', 3);
 
 -- --------------------------------------------------------
 
@@ -39,10 +45,22 @@ CREATE TABLE IF NOT EXISTS `assign` (
 --
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `code` char(50) NOT NULL,
-  `isReq` tinyint(1) NOT NULL,
-  `title` char(100) NOT NULL
+  `code` varchar(100) NOT NULL,
+  `semester` varchar(100) NOT NULL,
+  `isReq` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
+('CS2350', 'Fall', 'yes', '13-14', 'Assembly Language'),
+('CS3365', 'Spr', 'yes', '13-14', 'Software Engineering 1'),
+('CS3375', 'Spr', 'yes', '14-15', 'Computer Architecture'),
+('CS4354', 'Spr', 'yes', '14-15', 'Database Design');
 
 -- --------------------------------------------------------
 
@@ -51,9 +69,18 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 CREATE TABLE IF NOT EXISTS `has` (
-  `code` char(8) NOT NULL DEFAULT '',
-  `CRN` int(5) NOT NULL DEFAULT '0'
+  `crn` int(5) DEFAULT NULL,
+  `code` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `has`
+--
+
+INSERT INTO `has` (`crn`, `code`) VALUES
+(36429, 'CS3375'),
+(NULL, NULL),
+(59167, 'CS4354');
 
 -- --------------------------------------------------------
 
@@ -62,12 +89,22 @@ CREATE TABLE IF NOT EXISTS `has` (
 --
 
 CREATE TABLE IF NOT EXISTS `info` (
-  `time` int(11) NOT NULL,
-  `days` char(100) NOT NULL,
-  `room` int(11) NOT NULL,
-  `building` char(100) NOT NULL,
-  `year` int(11) NOT NULL
+  `id` int(5) NOT NULL,
+  `room_num` int(4) NOT NULL,
+  `building` varchar(100) NOT NULL,
+  `classTime` varchar(100) NOT NULL,
+  `days` varchar(3) NOT NULL,
+  `semester` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `info`
+--
+
+INSERT INTO `info` (`id`, `room_num`, `building`, `classTime`, `days`, `semester`) VALUES
+(3, 204, 'CS', '8:00-9:20', 'TTH', 'Spr 15'),
+(4, 205, 'CS', '2:00-3:20', 'TTH', 'Spr 15'),
+(7, 204, 'CS', '10:00-10:50', 'MWF', 'Spr 15');
 
 -- --------------------------------------------------------
 
@@ -76,9 +113,19 @@ CREATE TABLE IF NOT EXISTS `info` (
 --
 
 CREATE TABLE IF NOT EXISTS `instructor` (
-  `Name` char(100) NOT NULL,
-  `hireDate` date NOT NULL
+  `name` varchar(100) NOT NULL DEFAULT '',
+  `dateHired` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `instructor`
+--
+
+INSERT INTO `instructor` (`name`, `dateHired`) VALUES
+('Gelfond Jr.', 'Fall 11'),
+('Gelfond Sr.', 'Fall 00'),
+('Lim', 'Fall 12'),
+('Zhang', 'Fall 11');
 
 -- --------------------------------------------------------
 
@@ -87,10 +134,19 @@ CREATE TABLE IF NOT EXISTS `instructor` (
 --
 
 CREATE TABLE IF NOT EXISTS `professor` (
-  `name` char(30) NOT NULL DEFAULT '',
-  `tenure` char(3) DEFAULT NULL,
-  `title` char(100) DEFAULT NULL
+  `name` varchar(100) DEFAULT NULL,
+  `tenure` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `professor`
+--
+
+INSERT INTO `professor` (`name`, `tenure`, `title`) VALUES
+('Gelfond Sr.', 'yes', 'Full'),
+('Lim', 'no', 'assistant'),
+('Zhang', 'no', 'Associate');
 
 -- --------------------------------------------------------
 
@@ -99,11 +155,19 @@ CREATE TABLE IF NOT EXISTS `professor` (
 --
 
 CREATE TABLE IF NOT EXISTS `section` (
-  `secNum` int(11) NOT NULL,
-  `limit` int(11) NOT NULL,
-  `enrollment` int(11) NOT NULL,
-  `CRN` int(11) NOT NULL
+  `crn` int(5) NOT NULL,
+  `enrollment` int(3) NOT NULL,
+  `capacity` int(3) NOT NULL,
+  `section_num` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
+(36429, 45, 50, 1),
+(59167, 21, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -112,9 +176,16 @@ CREATE TABLE IF NOT EXISTS `section` (
 --
 
 CREATE TABLE IF NOT EXISTS `ta` (
-  `name` char(100) NOT NULL,
-  `hours` int(11) NOT NULL
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ta`
+--
+
+INSERT INTO `ta` (`name`) VALUES
+('Elham Hojati'),
+('Tara Parker');
 
 -- --------------------------------------------------------
 
@@ -123,9 +194,16 @@ CREATE TABLE IF NOT EXISTS `ta` (
 --
 
 CREATE TABLE IF NOT EXISTS `teacher` (
-  `name` char(30) NOT NULL DEFAULT '',
-  `type` char(30) DEFAULT NULL
+  `name` varchar(100) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`name`, `type`) VALUES
+('Gelfond Jr.', 'GFTI');
 
 --
 -- Indexes for dumped tables
@@ -135,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Indexes for table `assign`
 --
 ALTER TABLE `assign`
- ADD PRIMARY KEY (`CRN`,`instructor_name`,`ta_name`,`time`,`room`,`building`,`days`), ADD KEY `instructor_name` (`instructor_name`);
+ ADD PRIMARY KEY (`crn`), ADD KEY `assign_ibfk_2` (`instr_name`), ADD KEY `assign_ibfk_3` (`ta_name`), ADD KEY `assign_ibfk_4` (`info_id`);
 
 --
 -- Indexes for table `course`
@@ -147,31 +225,31 @@ ALTER TABLE `course`
 -- Indexes for table `has`
 --
 ALTER TABLE `has`
- ADD PRIMARY KEY (`code`,`CRN`), ADD KEY `CRN` (`CRN`);
+ ADD KEY `crn` (`crn`), ADD KEY `code` (`code`);
 
 --
 -- Indexes for table `info`
 --
 ALTER TABLE `info`
- ADD PRIMARY KEY (`time`,`days`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `instructor`
 --
 ALTER TABLE `instructor`
- ADD PRIMARY KEY (`Name`);
+ ADD PRIMARY KEY (`name`);
 
 --
 -- Indexes for table `professor`
 --
 ALTER TABLE `professor`
- ADD PRIMARY KEY (`name`);
+ ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
- ADD PRIMARY KEY (`CRN`);
+ ADD PRIMARY KEY (`crn`);
 
 --
 -- Indexes for table `ta`
@@ -183,7 +261,7 @@ ALTER TABLE `ta`
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
- ADD PRIMARY KEY (`name`);
+ ADD KEY `teacher_ibfk_1` (`name`);
 
 --
 -- Constraints for dumped tables
@@ -193,24 +271,26 @@ ALTER TABLE `teacher`
 -- Constraints for table `assign`
 --
 ALTER TABLE `assign`
-ADD CONSTRAINT `assign_ibfk_1` FOREIGN KEY (`CRN`) REFERENCES `section` (`CRN`),
-ADD CONSTRAINT `assign_ibfk_2` FOREIGN KEY (`instructor_name`) REFERENCES `instructor` (`Name`);
+ADD CONSTRAINT `assign_ibfk_1` FOREIGN KEY (`crn`) REFERENCES `section` (`crn`),
+ADD CONSTRAINT `assign_ibfk_2` FOREIGN KEY (`instr_name`) REFERENCES `instructor` (`name`) ON UPDATE CASCADE,
+ADD CONSTRAINT `assign_ibfk_3` FOREIGN KEY (`ta_name`) REFERENCES `ta` (`name`) ON UPDATE CASCADE,
+ADD CONSTRAINT `assign_ibfk_4` FOREIGN KEY (`info_id`) REFERENCES `info` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `has`
 --
 ALTER TABLE `has`
-ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`code`) REFERENCES `course` (`code`),
-ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`CRN`) REFERENCES `section` (`CRN`);
+ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`crn`) REFERENCES `section` (`crn`),
+ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`code`) REFERENCES `course` (`code`);
 
 --
 -- Constraints for table `professor`
 --
 ALTER TABLE `professor`
-ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`Name`);
+ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`name`);
 
 --
 -- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
-ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`Name`);
+ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
