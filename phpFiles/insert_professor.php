@@ -15,28 +15,29 @@
 
 	// collect input
 
-    $newProfId = $_POST['newProfID'];
+    $newProfName = $_POST['newProfName'];
     $hireDate = $_POST['hireDate'];
     $tenured = $_POST['tenured'];
     $profTitle = $_POST['profTitle'];
 
 	
-	$sql = "INSERT INTO table_1 VALUES('$newProfId', '$tenured', '$profTitle')";
+	$sql = "INSERT INTO professor VALUES('$newProfName', '$tenured', '$profTitle')";
 	echo $sql;
 	$result = $conn->query($sql);
 	
 	if ($result == false) {
 		die('Query failed: ' . mysql_error());
 	}
+    
+    $sql = "INSERT INTO instructor Values('$newProfName', '$hireDate')";
+    echo $sql;
+    $result = $conn->query($sql);
+    
+    if ($result == false) {
+        die('Query failed" ' .mysql_error());
+    }
 
-	// output to the screen
-	echo "<table>";  	
-	  echo "<tr> 
-					<td>id: " . $id. "</td>
-					<td> - Name: " . $name. "</td>
-					<td> - Shirt Color: " . $shirtColor. "</td> 
-	        </tr>" ;
-		echo "</table>";
+	
 ?>
 
 

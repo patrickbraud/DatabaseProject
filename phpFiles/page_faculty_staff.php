@@ -27,13 +27,13 @@
 	?>
 <form name='Input New Professor' action='insert_professor.php' method='post'>
 
-New Prof Name: <input type="text" name="newProfId" value="">
+New Prof Name: <input type="text" name="newProfName" value="">
 <br><br>
 Hire Date: <input type="text" name="hireDate" value="">
 <br><br>
 Tenured (yes/no): <input type="text" name="tenured" value="">
 <br><br>
-Title: <input type="text" name="title" value="">
+Title: <input type="text" name="profTitle" value="">
 <br><br>
 <input type="submit" name="submit" value="Submit">
 </form>
