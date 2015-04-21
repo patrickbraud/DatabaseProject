@@ -23,7 +23,7 @@
 </body>
 
 	<?php 
-		echo "<br>Insert New Professor / FTI / GPTI";
+		echo "<br><u>Insert New Professor / FTI / GPTI</u><br><br>";
 	?>
 <form name='Input New Professor' action='insert_professor.php' method='post'>
 
@@ -39,7 +39,7 @@ Title: <input type="text" name="title" value="">
 </form>
 
 <?php
-    echo "<br>Input Course and Section Information<br>";
+    echo "<br><u>Input Course and Section Information</u><br><br>";
 	?>
 <form name='Input New Course Info' action='insert_course.php' method='post'>
 Instructor: <input type="text" name="instructor" value="">
@@ -63,7 +63,7 @@ Enrollment: <input type="text" name="enrollment" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Input TA Information<br>";
+    echo "<br><u>Input TA Information</u><br><br>";
 	?>
 <form name='Input TA Info' action='insert_ta_info.php' method='post'>
 Section CRN: <input type="text" name="sectionCRN" value="">
@@ -75,7 +75,7 @@ Hours: <input type="text" name="taHours" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Input Catalog Info<br>";
+    echo "<br><u>Input Catalog Info</u><br><br>";
 	?>
 <form name='Input Catalog Year' action='insert_catalog_year.php' method='post'>
 Catalog Year: <input type="text" name="catalogYear" value="">

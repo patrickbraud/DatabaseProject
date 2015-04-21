@@ -23,14 +23,14 @@
 </body>
 
 <?php
-    echo "<br>Insert Preferences<br>";
+    echo "<br><u>Insert Preferences</u><br><br>";
 	?>
 <form name='Input Professor Preferences' action='insert_professor_preference.php' method='post'>
 <br><br>
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Update Teaching Load Distribution<br>";
+    echo "<br><u>Update Teaching Load Distribution</u><br><br>";
 	?>
 <form name='Update Teaching Load Distribution' action='update_distribution.php' method='post'>
 Teaching Load Distribution (Fall, Spring, NA): <input type="text" name="teachingDistribution" value="">
@@ -38,7 +38,7 @@ Teaching Load Distribution (Fall, Spring, NA): <input type="text" name="teaching
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Input Special Requests<br>";
+    echo "<br><u>Input Special Requests</u><br><br>";
 	?>
 <form name='Input Special Teaching Requests' action='input_teaching_requests.php' method='post'>
 Course Code: <input type="text" name="courseCode" value="">
@@ -50,7 +50,7 @@ Justification: <input type="text" name="justification" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Input Text Book Info<br>";
+    echo "<br><u>Input Text Book Info</u><br><br>";
 	?>
 <form name='Input Text' action='input_text.php' method='post'>
 Professor: <input type="text" name="professor" value="">
@@ -68,7 +68,7 @@ Publisher: <input type="text" name="publisher" value="">
 <input type="submit" name="submit" value="Submit">
 </form>
 <?php
-    echo "<br>Courses Assigned To Professor Next Semester<br>";
+    echo "<br><u>Courses Assigned To Professor Next Semester</u><br><br>";
 	?>
 <form name='Input Text' action='input_text.php' method='post'>
 Professor: <input type="text" name="professor" value="">
