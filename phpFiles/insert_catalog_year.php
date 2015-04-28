@@ -64,7 +64,7 @@ else
 <form method="post" action="<?php $_PHP_SELF ?>">
 	<table width="400" border="0" cellspacing="1" cellpadding="2">
 		<tr>
-			<td width="100">Catalog Year</td>
+			<td width="100">Catalog Year (e.g. 13-14)</td>
 			<td><input name="year" type="text" id="year"></td>
 		</tr>
 		<tr>
