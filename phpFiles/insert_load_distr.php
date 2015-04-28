@@ -42,14 +42,27 @@
 				"SET load_distr = '$distr' " . 
 				"WHERE name = '$name'";
 		
+		$sql2 = "SELECT name " . 
+				"FROM professor " . 
+				"WHERE name = '$name'";
+				
 		mysql_select_db('projectdb');
 		$retval1 = mysql_query( $sql1, $conn );
+		$result = mysql_query( $sql2, $conn );
 		if(! $retval1)
 		{
   			die('Could not update data: ' . mysql_error());
 		}
 
-		echo "Updated data successfully\n";
+		if (mysql_num_rows($result) > 0 && $retval1 != 0) {
+    		// output data of each row
+    		while($row = mysql_fetch_array($result)){
+        		echo "Load distribution has been set for $name<br>";
+			}
+		} else {
+    		echo "No professor named $name";
+		}
+		
 		mysql_close($conn);
 	}
 	else
