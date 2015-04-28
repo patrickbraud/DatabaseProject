@@ -35,6 +35,8 @@ if(! $conn )
   die('Could not connect: ' . mysql_error());
 }
 
+mysql_select_db('new design');
+
 $name = $_POST['name'];
 $dateHired = $_POST['dateHired'];
 $instrType = $_POST['instrType'];
@@ -43,15 +45,24 @@ $title = $_POST['title'];
 
 $sql1 = "INSERT INTO instructor(name, dateHired) ".
        "VALUES ('$name', '$dateHired')";
-	   
-mysql_select_db('projectdb');
 $retval1 = mysql_query( $sql1, $conn );
+$query2 = "Insert into professor(name, title, tenure) ".
+			"Values('$name','$title', '$tenure')";
+$sql3 = "Insert into teacher(name, type) ".
+			"Values('$name', '$instrType')";
+if($instrType == 'Professor'){
+	$retvalue2 = mysql_query( $query2, $conn );
+}
+else if ($instrType == 'GPTI' || $instrType == 'FTI'){
+	$retvalue3 = mysql_query( $sql3, $conn );
+}
+
 if(! $retval1)
 {
   die('Could not update data: ' . mysql_error());
 }
 
-echo "Updated data successfully\n";
+echo "'$name' has been added as a new instructor\n";
 mysql_close($conn);
 }
 else
@@ -59,27 +70,21 @@ else
 ?>
 
 <form method="post" action="<?php $_PHP_SELF ?>">
-	<table width="400" border="0" cellspacing="1" cellpadding="2">
+	<table width="700" border="0" cellspacing="1" cellpadding="2">
 		<tr>
 			<td width="100">Name</td>
 			<td><input name="name" type="text" id="name"></td>
 		</tr>
 		<tr>
-			<td width="100">Date Hired</td>
+			<td width="100">Date Hired (Semester year)</td>
 			<td><input name="dateHired" type="text" id="dateHired"></td>
 		</tr>
 		<tr>
-			<td >Position</td>
-			<td><select name="instrType">
-				  <option value="">Select...</option>
-				  <option value="P">Professor</option>
-				  <option value="G">GPTI</option>
-				  <option value="F">FTI</option>
-				</select>
-			</td>
+			<td width="100">Position (Professor, GPTI, FTI)</td>
+			<td><input name="instrType" type="text" id="instrType"></td>
 		</tr>
 		<tr>
-			<td width="100">Tenure Status</td>
+			<td width="100">Tenure Status (yes or no)</td>
 			<td><input name="tenure" type="text" id="tenure"></td>
 		</tr>
 		<tr>

@@ -22,7 +22,7 @@
 			<br><br><br>
 			<li><a href="insert_professor.php">Insert New Professor</a></li>
 			<br><br>
-			<li><a href="insert_course.php">Insert New Section</a></li>
+			<li><a href="insert_section.php">Insert New Section</a></li>
 			<br><br>
 			<li><a href="insert_ta_info.php">Add TA to a Section</a></li>
 			<br><br>
