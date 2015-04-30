@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 30, 2015 at 10:43 PM
+-- Host: 127.0.0.1
+-- Generation Time: May 01, 2015 at 12:05 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -40,7 +40,9 @@ CREATE TABLE IF NOT EXISTS `assign` (
 
 INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_id`, `book_title`, `book_author`, `book_edition`, `book_isbn`, `book_publisher`) VALUES
 (36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
-(59167, 'Zhang', 'Tara Parker', 12, 'no', 11, NULL, NULL, NULL, NULL, NULL);
+(45540, 'Lim', NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL),
+(59167, 'Zhang', 'Tara Parker', 12, 'no', 11, NULL, NULL, NULL, NULL, NULL),
+(75975, 'Zhang', NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,6 +71,22 @@ INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `coursesectionlink`
+--
+CREATE TABLE IF NOT EXISTS `coursesectionlink` (
+`code` varchar(100)
+,`instr_name` varchar(100)
+,`capacity` int(3)
+,`semester` varchar(100)
+,`book_title` varchar(50)
+,`book_author` varchar(50)
+,`book_edition` int(11)
+,`book_isbn` int(11)
+,`book_publisher` varchar(50)
+);
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `has`
 --
 
@@ -85,7 +103,9 @@ INSERT INTO `has` (`crn`, `code`) VALUES
 (36429, 'CS3375'),
 (NULL, NULL),
 (59167, 'CS4354'),
-(57815, 'CS3375');
+(57815, 'CS3375'),
+(45540, 'CS3365'),
+(75975, 'CS4354');
 
 -- --------------------------------------------------------
 
@@ -109,7 +129,9 @@ INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `semester`) VALUES
 (3, '204', '8:00-9:20', 'TTH', 'Spr 15'),
 (4, '205', '2:00-3:20', 'TTH', 'Spr 15'),
 (7, '204', '10:00-10:50', 'MWF', 'Spr 15'),
-(11, '201', '12:30-1:50', 'MWF', 'Spring 15');
+(11, '201', '12:30-1:50', 'MWF', 'Spring 15'),
+(12, 'CS201', '8:00-8:50', 'MWF', 'Fall 04'),
+(13, 'CS 204', '9:00-9:50', 'MWF', 'Spring 11');
 
 -- --------------------------------------------------------
 
@@ -130,7 +152,6 @@ INSERT INTO `instructor` (`name`, `dateHired`) VALUES
 ('Gelfond Jr.', 'Fall 11'),
 ('Gelfond Sr.', 'Fall 00'),
 ('Lim', 'Fall 12'),
-('MyTest', '1/1/1111'),
 ('Zhang', 'Fall 11');
 
 -- --------------------------------------------------------
@@ -177,8 +198,10 @@ CREATE TABLE IF NOT EXISTS `section` (
 
 INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (36429, 45, 50, 1),
+(45540, 20, 35, 4),
 (57815, 25, 50, 5),
-(59167, 21, 30, 1);
+(59167, 21, 30, 1),
+(75975, 20, 35, 2);
 
 -- --------------------------------------------------------
 
@@ -215,6 +238,15 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 
 INSERT INTO `teacher` (`name`, `type`) VALUES
 ('Gelfond Jr.', 'GFTI');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `coursesectionlink`
+--
+DROP TABLE IF EXISTS `coursesectionlink`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coursesectionlink` AS (select `course`.`code` AS `code`,`assign`.`instr_name` AS `instr_name`,`section`.`capacity` AS `capacity`,`info`.`semester` AS `semester`,`assign`.`book_title` AS `book_title`,`assign`.`book_author` AS `book_author`,`assign`.`book_edition` AS `book_edition`,`assign`.`book_isbn` AS `book_isbn`,`assign`.`book_publisher` AS `book_publisher` from ((((`course` join `section`) join `has`) join `info`) join `assign`) where ((`has`.`code` = `course`.`code`) and (`has`.`crn` = `section`.`crn`) and (`assign`.`info_id` = `info`.`id`) and (`assign`.`crn` = `section`.`crn`)));
 
 --
 -- Indexes for dumped tables
@@ -291,8 +323,8 @@ ADD CONSTRAINT `assign_ibfk_4` FOREIGN KEY (`info_id`) REFERENCES `info` (`id`) 
 -- Constraints for table `has`
 --
 ALTER TABLE `has`
-ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`crn`) REFERENCES `section` (`crn`),
-ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`code`) REFERENCES `course` (`code`);
+ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`crn`) REFERENCES `section` (`crn`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`code`) REFERENCES `course` (`code`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `professor`
