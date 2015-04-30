@@ -100,7 +100,7 @@ else
 			<td><input name="code" type="text" id="code"></td>
 		</tr>
 		<tr>
-			<td width="100">Section Number</td>
+			<td width="150">Section Number</td>
 			<td><input name="section_num" type="text" id="section_num"></td>
 		</tr>
 		<tr>
