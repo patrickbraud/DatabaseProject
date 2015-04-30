@@ -1,0 +1,4 @@
+Create View courseSectionLink AS(
+    Select course.code, section.section_num, section.enrollment, section.capacity, assign.instr_name, assign.book_title, assign.book_author, assign.book_edition, assign.book_isbn, assign.book_publisher, info.semester, info.id, section.crn
+    FROM course, has, section, assign, info 
+    Where has.code = course.code AND has.crn = section.crn AND assign.crn = section.crn AND info.id = assign.info_id)
