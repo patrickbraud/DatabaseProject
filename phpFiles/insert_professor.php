@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Update a Record in MySQL Database</title>
+<title>Insert Professor</title>
 </head>
 
 <body>

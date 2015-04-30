@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Load Distribution</title>
+<title>Text Books</title>
 </head>
 
 <body>

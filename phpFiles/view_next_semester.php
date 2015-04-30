@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Load Distribution</title>
+<title>Next Semester</title>
 </head>
 
 <body>
@@ -72,7 +72,6 @@
 		$year = (int)$year + 1;
 		$next_full_semester = "$next_semester $year";
 		
-		// , assignment.classTime, assignment.days, assignment.room_num
 		$sql1 = "SELECT code, classTime, days, room_num " . 
 				"FROM has, info " .
 				"WHERE has.crn = (SELECT assign.crn " . 

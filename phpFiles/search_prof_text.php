@@ -11,15 +11,14 @@
 			display: inline;
 		}
 	</style>
-<title>Update a Record in MySQL Database</title>
+<title>Prof. Text Books</title>
 </head>
 
 <body>
 <ul>
-  	<li><a href="page_faculty_staff.php">Back</a></li>
+  	<li><a href="page_business_manager.php">Back</a></li>
 	<br>
 	<?php
-    echo "<br>New Instructor Information<br><br>";
 	?>
 </ul>
 
