@@ -16,9 +16,7 @@
 	
 	<body>
 		<ul>
-			<li><a href="page_faculty_staff.php">Faculty/Staff</a></li>
-			<li><a href="page_professor.php">Professor</a></li>
-			<li><a href="page_business_manager.php">Business Manager</a></li>
+			<li><a href="main.php">Back</a></li>
 			<br><br><br>
 			<li><a href="insert_professor.php">Insert New Professor</a></li>
 			<br><br>

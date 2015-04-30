@@ -75,19 +75,19 @@
 <form method="post" action="<?php $_PHP_SELF ?>">
 	<table width="400" border="0" cellspacing="1" cellpadding="2">
 		<tr>
-			<td width="100">Prof Name:</td>
+			<td width="100">Prof Name</td>
 			<td><input name="name" type="text" id="name"></td>
 		</tr>
 		<tr>
-			<td width="100">Course Code:</td>
+			<td width="100">Course Code</td>
 			<td><input name="code" type="text" id="code"></td>
 		</tr>
 		<tr>
-			<td width="100">Course Title:</td>
+			<td width="100">Course Title</td>
 			<td><input name="title" type="text" id="title"></td>
 		</tr>
 		<tr>
-			<td width="100">Justification:</td>
+			<td width="100">Justification</td>
 			<td><input name="justification" type="text" id="justification"></td>
 		</tr>
 		<tr>

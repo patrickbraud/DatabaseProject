@@ -116,7 +116,7 @@ else
 			<td><input name="days" type="text" id="days"></td>
 		</tr>
 		<tr>
-			<td width="100">Room Number</td>
+			<td width="100">Room Number <br> (e.g. EC 201)</td>
 			<td><input name="room_num" type="text" id="room_num"></td>
 		</tr>
 		<tr>

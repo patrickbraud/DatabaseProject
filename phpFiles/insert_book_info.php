@@ -82,31 +82,31 @@
 <form method="post" action="<?php $_PHP_SELF ?>">
 	<table width="400" border="0" cellspacing="1" cellpadding="2">
 		<tr>
-			<td width="120">Professor Name:</td>
+			<td width="120">Professor Name</td>
 			<td><input name="name" type="text" id="name"></td>
 		</tr>
 		<tr>
-			<td width="120">Course Code:</td>
+			<td width="120">Course Code</td>
 			<td><input name="code" type="text" id="code"></td>
 		</tr>
 		<tr>
-			<td width="100">Text Title:</td>
+			<td width="100">Text Title</td>
 			<td><input name="title" type="text" id="title"></td>
 		</tr>
 		<tr>
-			<td width="100">Author:</td>
+			<td width="100">Author</td>
 			<td><input name="author" type="text" id="author"></td>
 		</tr>
 		<tr>
-			<td width="100">Edition:</td>
+			<td width="100">Edition</td>
 			<td><input name="edition" type="text" id="edition"></td>
 		</tr>
 		<tr>
-			<td width="100">ISBN#:</td>
+			<td width="100">ISBN#</td>
 			<td><input name="isbn" type="text" id="isbn"></td>
 		</tr>
 		<tr>
-			<td width="100">Publisher:</td>
+			<td width="100">Publisher</td>
 			<td><input name="publisher" type="text" id="publisher"></td>
 		</tr>
 		<tr>

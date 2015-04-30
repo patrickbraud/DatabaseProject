@@ -76,7 +76,7 @@ else
 			<td><input name="name" type="text" id="name"></td>
 		</tr>
 		<tr>
-			<td width="200">Date Hired (Semester year)</td>
+			<td width="200">Date Hired (e.g. Fall 11)</td>
 			<td><input name="dateHired" type="text" id="dateHired"></td>
 		</tr>
 		<tr>
