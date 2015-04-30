@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Update a Record in MySQL Database</title>
+<title>Course Info</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
   	<li><a href="page_business_manager.php">Back</a></li>
 	<br>
 	<?php
-    echo "<br>Search Course Information<br><br>";
+    echo "<br>Course Info for the Last \"n\" Years<br><br>";
 	?>
 </ul>
 

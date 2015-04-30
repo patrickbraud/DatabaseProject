@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2015 at 10:16 PM
+-- Generation Time: Apr 30, 2015 at 10:43 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -26,17 +26,21 @@ CREATE TABLE IF NOT EXISTS `assign` (
   `ta_name` varchar(100) DEFAULT NULL,
   `ta_hours` int(2) DEFAULT NULL,
   `new` varchar(3) DEFAULT NULL,
-  `textBook` varchar(100) DEFAULT NULL,
-  `info_id` int(5) NOT NULL
+  `info_id` int(5) NOT NULL,
+  `book_title` varchar(50) DEFAULT NULL,
+  `book_author` varchar(50) DEFAULT NULL,
+  `book_edition` int(11) DEFAULT NULL,
+  `book_isbn` int(11) DEFAULT NULL,
+  `book_publisher` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assign`
 --
 
-INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `textBook`, `info_id`) VALUES
-(36429, 'Lim', 'Elham Hojati', 9, 'yes', 'Computer Organization and Design', 7),
-(59167, 'Zhang', 'Tara Parker', 12, 'no', 'First Course in Database Design', 3);
+INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_id`, `book_title`, `book_author`, `book_edition`, `book_isbn`, `book_publisher`) VALUES
+(36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
+(59167, 'Zhang', 'Tara Parker', 12, 'no', 11, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,8 @@ CREATE TABLE IF NOT EXISTS `has` (
 INSERT INTO `has` (`crn`, `code`) VALUES
 (36429, 'CS3375'),
 (NULL, NULL),
-(59167, 'CS4354');
+(59167, 'CS4354'),
+(57815, 'CS3375');
 
 -- --------------------------------------------------------
 
@@ -90,8 +95,7 @@ INSERT INTO `has` (`crn`, `code`) VALUES
 
 CREATE TABLE IF NOT EXISTS `info` (
   `id` int(5) NOT NULL,
-  `room_num` int(4) NOT NULL,
-  `building` varchar(100) NOT NULL,
+  `room_num` varchar(30) NOT NULL,
   `classTime` varchar(100) NOT NULL,
   `days` varchar(3) NOT NULL,
   `semester` varchar(100) NOT NULL
@@ -101,10 +105,11 @@ CREATE TABLE IF NOT EXISTS `info` (
 -- Dumping data for table `info`
 --
 
-INSERT INTO `info` (`id`, `room_num`, `building`, `classTime`, `days`, `semester`) VALUES
-(3, 204, 'CS', '8:00-9:20', 'TTH', 'Spr 15'),
-(4, 205, 'CS', '2:00-3:20', 'TTH', 'Spr 15'),
-(7, 204, 'CS', '10:00-10:50', 'MWF', 'Spr 15');
+INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `semester`) VALUES
+(3, '204', '8:00-9:20', 'TTH', 'Spr 15'),
+(4, '205', '2:00-3:20', 'TTH', 'Spr 15'),
+(7, '204', '10:00-10:50', 'MWF', 'Spr 15'),
+(11, '201', '12:30-1:50', 'MWF', 'Spring 15');
 
 -- --------------------------------------------------------
 
@@ -150,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
 
 INSERT INTO `professor` (`name`, `tenure`, `title`, `load_distr`, `request_code`, `request_title`, `request_justif`) VALUES
 ('Gelfond Sr.', 'yes', 'Full', 'NA', NULL, NULL, NULL),
-('Lim', 'no', 'assistant', 'NA', 'CS4352', 'Operating Systems', 'Testing with scrolling text please work'),
+('Lim', 'no', 'assistant', 'Spring', 'CS4352', 'Operating Systems', 'Testing with scrolling text please work'),
 ('Zhang', 'no', 'Associate', 'NA', 'CS5432', 'My Test Course', 'Testing one more time');
 
 -- --------------------------------------------------------
@@ -172,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `section` (
 
 INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (36429, 45, 50, 1),
+(57815, 25, 50, 5),
 (59167, 21, 30, 1);
 
 -- --------------------------------------------------------

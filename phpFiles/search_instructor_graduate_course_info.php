@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Load Distribution</title>
+<title>Undergraduate/Graduate Courses</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
   	<li><a href="page_business_manager.php">Back</a></li>
 	<br>
 	<?php
-    echo "<br>Courses Assigned Next Semester<br><br>";
+    echo "<br>Undergraduate/Graduate Course Info for the Last \"n\" Years <br><br>";
 	?>
 </ul>
 

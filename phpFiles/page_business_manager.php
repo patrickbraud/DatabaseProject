@@ -20,7 +20,7 @@ display: inline;
 <br><br><br>
 <li><a href="search_instructor_course_info.php">Search Instructor Course History</a></li>
 <br><br>
-<li><a href="search_instructor_graduate_course_info.php">Search Instructor Graduate Course Info</a></li>
+<li><a href="search_instructor_graduate_course_info.php">Search Undergraduate/Graduate Course Info</a></li>
 <br><br>
 <li><a href="search_special_course_info.php">Search Special Course</a></li>
 <br><br>
