@@ -11,7 +11,7 @@
 			display: inline;
 		}
 	</style>
-<title>Update a Record in MySQL Database</title>
+<title>Insert Section</title>
 </head>
 
 <body>
@@ -72,8 +72,8 @@ $sql4 = "Insert into info ".
 		"Values('$info_id', '$room_num', '$class_time', '$days', '$semester'); ";
 $result4 = mysql_query( $sql4, $conn );
 
-$sql5 = "Insert into assign ". 
-		"Values('$crn', '$instr_name', null, null, null, null,'$info_id'); ";
+$sql5 = "Insert into assign(crn, instr_name, info_id) ". 
+		"Values('$crn', '$instr_name', '$info_id'); ";
 $result5 = mysql_query( $sql5, $conn );
 
 if(! $result1 )
