@@ -35,7 +35,7 @@ if(! $conn )
   die('Could not connect: ' . mysql_error());
 }
 
-mysql_select_db('new design');
+mysql_select_db('projectdb');
 
 $name = $_POST['name'];
 $dateHired = $_POST['dateHired'];

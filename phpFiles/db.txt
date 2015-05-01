@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 01, 2015 at 12:05 AM
+-- Host: localhost
+-- Generation Time: May 01, 2015 at 02:19 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -39,10 +39,37 @@ CREATE TABLE IF NOT EXISTS `assign` (
 --
 
 INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_id`, `book_title`, `book_author`, `book_edition`, `book_isbn`, `book_publisher`) VALUES
+(25126, 'Rushton', NULL, NULL, NULL, 35, NULL, NULL, NULL, NULL, NULL),
+(26772, 'Shin', NULL, NULL, NULL, 30, NULL, NULL, NULL, NULL, NULL),
+(30395, 'Lamprecht', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(30509, 'youn', NULL, NULL, NULL, 26, NULL, NULL, NULL, NULL, NULL),
+(32989, 'Lim', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(33241, 'Mengel', NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL),
+(35559, 'Swaminathan', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
 (36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
+(39051, 'M Gelfond', NULL, NULL, NULL, 16, NULL, NULL, NULL, NULL, NULL),
+(44376, 'Myagmarjav', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
 (45540, 'Lim', NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL),
+(45960, 'Lakhani', NULL, NULL, NULL, 29, NULL, NULL, NULL, NULL, NULL),
+(46600, 'Rushton', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(51143, 'Rushton', NULL, NULL, NULL, 41, NULL, NULL, NULL, NULL, NULL),
+(52473, 'Lakhani', NULL, NULL, NULL, 42, NULL, NULL, NULL, NULL, NULL),
+(56263, 'Zhang', NULL, NULL, NULL, 14, NULL, NULL, NULL, NULL, NULL),
+(56354, 'Zhang', NULL, NULL, NULL, 27, NULL, NULL, NULL, NULL, NULL),
 (59167, 'Zhang', 'Tara Parker', 12, 'no', 11, NULL, NULL, NULL, NULL, NULL),
-(75975, 'Zhang', NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, NULL);
+(65880, 'G Gelfond', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(67075, 'Mengel', NULL, NULL, NULL, 38, NULL, NULL, NULL, NULL, NULL),
+(72702, 'M Gelfond', NULL, NULL, NULL, 36, NULL, NULL, NULL, NULL, NULL),
+(73657, 'Lim', NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
+(75975, 'Zhang', NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, NULL),
+(79326, 'Mengel', NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
+(79843, 'Youn', NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL),
+(80216, 'Lopez-Benitez', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
+(83027, 'Lopez-Benitez', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
+(83457, 'Lakhani', NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
+(84012, 'Swaminathan', NULL, NULL, NULL, 33, NULL, NULL, NULL, NULL, NULL),
+(89725, 'Zhang', NULL, NULL, NULL, 25, NULL, NULL, NULL, NULL, NULL),
+(98952, 'Sridharan', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -63,10 +90,30 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
+('CS1382', 'Fall', 'yes', '11-12', 'Discrete Comp Structure'),
+('CS1411', 'Fall', 'yes', '12-13', 'Programming Principles I'),
+('CS1412', 'Spring', 'yes', '11-12', 'Programming Principles II'),
 ('CS2350', 'Fall', 'yes', '13-14', 'Assembly Language'),
+('CS2413', 'Spring', 'yes', '13-14', 'Data Structures'),
+('CS3361', 'Fall', 'yes', '13-14', 'Concepts of Programming Languages'),
+('CS3364', 'Fall', 'yes', '12-13', 'Design and Analysis of Algorithms'),
 ('CS3365', 'Spr', 'yes', '13-14', 'Software Engineering 1'),
+('CS3368', 'Spring', 'no', '11-12', 'Intro to A.I.'),
 ('CS3375', 'Spr', 'yes', '14-15', 'Computer Architecture'),
-('CS4354', 'Spr', 'yes', '14-15', 'Database Design');
+('CS3383', 'Spring', 'yes', '14-15', 'Theory of Automata'),
+('CS4000', 'Spring', 'yes', '14-15', 'Special Topics in Computer Science'),
+('CS4311', 'Fall', 'yes', '11-12', 'Senior Project Design'),
+('CS4352', 'Fall', 'yes', '11-12', 'Operating Systems'),
+('CS4354', 'Spr', 'yes', '14-15', 'Database Design'),
+('CS4379', 'Spring', 'no', '13-14', 'Parallel & Concurrent Prog.'),
+('CS5000', 'Spring', 'yes', '12-13', 'Practicum Computing'),
+('CS5331', 'Fall', 'yes', '12-13', 'Special Problems in CS'),
+('CS5352', 'Spring', 'yes', '14-15', 'Advanced Operating System Design'),
+('CS5363', 'Spring', 'yes', '14-15', 'Software Project Management'),
+('CS5373', 'Fall', 'yes', '13-14', 'Software Modeling and Architecture'),
+('CS5375', 'Fall', 'yes', '13-14', 'Computer Systems Org. & Architecture'),
+('CS5381', 'Spring', 'yes', '14-15', 'Analysis of Algorithms'),
+('CS5383', 'Fall', 'yes', '14-15', 'Theory of Automata');
 
 -- --------------------------------------------------------
 
@@ -75,14 +122,18 @@ INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
 --
 CREATE TABLE IF NOT EXISTS `coursesectionlink` (
 `code` varchar(100)
-,`instr_name` varchar(100)
+,`section_num` int(11)
+,`enrollment` int(3)
 ,`capacity` int(3)
-,`semester` varchar(100)
+,`instr_name` varchar(100)
 ,`book_title` varchar(50)
 ,`book_author` varchar(50)
 ,`book_edition` int(11)
 ,`book_isbn` int(11)
 ,`book_publisher` varchar(50)
+,`semester` varchar(100)
+,`id` int(5)
+,`crn` int(5)
 );
 -- --------------------------------------------------------
 
@@ -105,7 +156,32 @@ INSERT INTO `has` (`crn`, `code`) VALUES
 (59167, 'CS4354'),
 (57815, 'CS3375'),
 (45540, 'CS3365'),
-(75975, 'CS4354');
+(75975, 'CS4354'),
+(32989, 'CS2350'),
+(39051, 'CS1382'),
+(44376, 'CS1382'),
+(65880, 'CS1411'),
+(46600, 'CS1411'),
+(98952, 'CS1412'),
+(30395, 'CS1412'),
+(80216, 'CS2350'),
+(79843, 'CS2413'),
+(89725, 'CS3361'),
+(30509, 'CS3364'),
+(56354, 'CS3368'),
+(83027, 'CS3375'),
+(45960, 'CS3383'),
+(26772, 'CS4311'),
+(38907, 'CS4352'),
+(84012, 'CS4354'),
+(46069, 'CS4379'),
+(25126, 'CS5000'),
+(72702, 'CS5331'),
+(83457, 'CS5352'),
+(33241, 'CS5373'),
+(51143, 'CS5375'),
+(52473, 'CS5381'),
+(44662, 'CS5383');
 
 -- --------------------------------------------------------
 
@@ -131,7 +207,37 @@ INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `semester`) VALUES
 (7, '204', '10:00-10:50', 'MWF', 'Spr 15'),
 (11, '201', '12:30-1:50', 'MWF', 'Spring 15'),
 (12, 'CS201', '8:00-8:50', 'MWF', 'Fall 04'),
-(13, 'CS 204', '9:00-9:50', 'MWF', 'Spring 11');
+(13, 'CS 204', '9:00-9:50', 'MWF', 'Spring 11'),
+(14, 'EC 205', '2:00-2:50', 'MWF', 'Summer I'),
+(15, 'EC 204', '9:00-10:50', 'MWF', 'Summer I 14'),
+(16, 'ENGCTR 201', '11:00-12:20', 'TR', 'Fall 11'),
+(17, 'Livermore 101', '12:30-1:50', 'TR', 'Spring 12'),
+(18, 'ENGCTR 204', '11:00-11:50', 'MWF', 'Fall 13'),
+(19, 'PE 118', '9:30-10:50', 'TR', 'Spring 11'),
+(20, 'Holden Hall 154', '9:30-10:50', 'TR', 'Spring 14'),
+(21, 'PE 118', '10:00-10:50', 'MWF', 'Fall 12'),
+(22, 'ENGCTR 205', '10:00-10:50', 'MWF', 'Spring 14'),
+(23, 'Holden Hall 154', '11:00-12:20', 'TR', 'Fall 14'),
+(24, 'MATH 108', '11:00-12:20', 'TR', 'Spring 11'),
+(25, 'Holden Hall 225', '9:30-10:50', 'TR', 'Fall 12'),
+(26, 'ENGCTR 205', '1:00-1:50', 'MWF', 'Fall 13'),
+(27, 'ENGCTR 205', '8:00-9:20', 'TR', 'Spring 13'),
+(28, 'ENGCTR 201', '12:00-12:50', 'MWF', 'Fall 13'),
+(29, 'ENGCTR 204', '11:00-12:20', 'TR', 'Fall 14'),
+(30, 'CHEME 101', '9:30-10:50', 'TR', 'Fall 13'),
+(31, 'ENGCTR 204', '10:00-10:50', 'MWF', 'Fall 12'),
+(32, 'ENGCTR 204', '12:30-1:50', 'TR', 'Spring 11'),
+(33, 'CE 211', '2:00-3:20', 'TR', 'Spring 13'),
+(34, 'ENGCTR 205', '11:00-12:20', 'TR', 'Fall 13'),
+(35, 'ENGCTR 205', '4:00-4:50', 'MWF', 'Spring 14'),
+(36, 'ENGCTR 110', '2:00-2:50', 'MWF', 'Fall 11'),
+(37, 'ENGCTR 204', '2:00-2:50', 'MWF', 'Fall 12'),
+(38, 'Livermore 104', '3:00-3:50', 'MWF', 'Spring 12'),
+(39, 'Livermore 104', '3:30-4:50', 'TR', 'Spring 12'),
+(40, 'ENGCTR 110', '8:00-9:20', 'TR', 'Spring 14'),
+(41, 'ENGCTR 201', '9:00-9:50', 'MWF', 'Fall 13'),
+(42, 'ENGCTR 204', '9:00-9:50', 'MWF', 'Fall 12'),
+(43, 'ENGCTR 110', '10:00-10:50', 'MWF', 'Spring 13');
 
 -- --------------------------------------------------------
 
@@ -149,9 +255,22 @@ CREATE TABLE IF NOT EXISTS `instructor` (
 --
 
 INSERT INTO `instructor` (`name`, `dateHired`) VALUES
+('G Gelfond', 'Fall 12'),
 ('Gelfond Jr.', 'Fall 11'),
 ('Gelfond Sr.', 'Fall 00'),
+('Kang', 'Spring 12'),
+('Lakhani', 'Spring 12'),
+('Lamprecht', 'Spring 14'),
 ('Lim', 'Fall 12'),
+('Lopez-Benitez', 'Spring 11'),
+('M Gelfond', 'Fall 11'),
+('Mengel', 'Spring 13'),
+('Myagmarjav', 'Spring 12'),
+('Rushton', 'Fall 11'),
+('Shin', 'Spring 14'),
+('Sridharan', 'Fall 14'),
+('Swaminathan', 'Fall 13'),
+('Youn', 'Fall 14'),
 ('Zhang', 'Fall 11');
 
 -- --------------------------------------------------------
@@ -177,7 +296,20 @@ CREATE TABLE IF NOT EXISTS `professor` (
 INSERT INTO `professor` (`name`, `tenure`, `title`, `load_distr`, `request_code`, `request_title`, `request_justif`) VALUES
 ('Gelfond Sr.', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Lim', 'no', 'assistant', 'Spring', 'CS4352', 'Operating Systems', 'Testing with scrolling text please work'),
-('Zhang', 'no', 'Associate', 'NA', 'CS5432', 'My Test Course', 'Testing one more time');
+('Zhang', 'no', 'Associate', 'NA', 'CS5432', 'My Test Course', 'Testing one more time'),
+('M Gelfond', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Myagmarjav', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('G Gelfond', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Rushton', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Mengel', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Sridharan', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Lamprecht', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Kang', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Lopez-Benitez', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Swaminathan', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Youn', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Shin', 'yes', 'Full', 'NA', NULL, NULL, NULL),
+('Lakhani', 'yes', 'Full', 'NA', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -197,11 +329,41 @@ CREATE TABLE IF NOT EXISTS `section` (
 --
 
 INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
+(25126, 8, 17, 1),
+(26772, 13, 33, 1),
+(30395, 18, 20, 8),
+(30509, 19, 33, 2),
+(32989, 15, 20, 8),
+(33241, 9, 18, 1),
+(35559, 22, 34, 1),
 (36429, 45, 50, 1),
+(38907, 29, 33, 1),
+(39051, 37, 40, 1),
+(44376, 28, 40, 3),
+(44662, 16, 17, 1),
 (45540, 20, 35, 4),
+(45960, 29, 33, 1),
+(46069, 26, 33, 1),
+(46600, 23, 36, 5),
+(51143, 12, 17, 1),
+(52473, 13, 17, 1),
+(56263, 32, 50, 1),
+(56354, 20, 33, 1),
 (57815, 25, 50, 5),
 (59167, 21, 30, 1),
-(75975, 20, 35, 2);
+(65880, 21, 33, 4),
+(67075, 16, 17, 1),
+(72702, 12, 17, 1),
+(73657, 11, 20, 2),
+(75975, 20, 35, 2),
+(79326, 12, 18, 2),
+(79843, 21, 34, 4),
+(80216, 12, 33, 2),
+(83027, 30, 33, 5),
+(83457, 11, 18, 2),
+(84012, 11, 33, 8),
+(89725, 31, 40, 1),
+(98952, 35, 40, 3);
 
 -- --------------------------------------------------------
 
@@ -246,7 +408,7 @@ INSERT INTO `teacher` (`name`, `type`) VALUES
 --
 DROP TABLE IF EXISTS `coursesectionlink`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coursesectionlink` AS (select `course`.`code` AS `code`,`assign`.`instr_name` AS `instr_name`,`section`.`capacity` AS `capacity`,`info`.`semester` AS `semester`,`assign`.`book_title` AS `book_title`,`assign`.`book_author` AS `book_author`,`assign`.`book_edition` AS `book_edition`,`assign`.`book_isbn` AS `book_isbn`,`assign`.`book_publisher` AS `book_publisher` from ((((`course` join `section`) join `has`) join `info`) join `assign`) where ((`has`.`code` = `course`.`code`) and (`has`.`crn` = `section`.`crn`) and (`assign`.`info_id` = `info`.`id`) and (`assign`.`crn` = `section`.`crn`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coursesectionlink` AS (select `course`.`code` AS `code`,`section`.`section_num` AS `section_num`,`section`.`enrollment` AS `enrollment`,`section`.`capacity` AS `capacity`,`assign`.`instr_name` AS `instr_name`,`assign`.`book_title` AS `book_title`,`assign`.`book_author` AS `book_author`,`assign`.`book_edition` AS `book_edition`,`assign`.`book_isbn` AS `book_isbn`,`assign`.`book_publisher` AS `book_publisher`,`info`.`semester` AS `semester`,`info`.`id` AS `id`,`section`.`crn` AS `crn` from ((((`course` join `has`) join `section`) join `assign`) join `info`) where ((`has`.`code` = `course`.`code`) and (`has`.`crn` = `section`.`crn`) and (`assign`.`crn` = `section`.`crn`) and (`info`.`id` = `assign`.`info_id`)));
 
 --
 -- Indexes for dumped tables
