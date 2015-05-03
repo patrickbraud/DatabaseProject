@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 01, 2015 at 02:19 AM
+-- Host: 127.0.0.1
+-- Generation Time: May 03, 2015 at 07:51 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -122,6 +122,7 @@ INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
 --
 CREATE TABLE IF NOT EXISTS `coursesectionlink` (
 `code` varchar(100)
+,`title` varchar(100)
 ,`section_num` int(11)
 ,`enrollment` int(3)
 ,`capacity` int(3)
@@ -132,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `coursesectionlink` (
 ,`book_isbn` int(11)
 ,`book_publisher` varchar(50)
 ,`semester` varchar(100)
+,`year` int(2)
 ,`id` int(5)
 ,`crn` int(5)
 );
@@ -152,7 +154,6 @@ CREATE TABLE IF NOT EXISTS `has` (
 
 INSERT INTO `has` (`crn`, `code`) VALUES
 (36429, 'CS3375'),
-(NULL, NULL),
 (59167, 'CS4354'),
 (57815, 'CS3375'),
 (45540, 'CS3365'),
@@ -194,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `info` (
   `room_num` varchar(30) NOT NULL,
   `classTime` varchar(100) NOT NULL,
   `days` varchar(3) NOT NULL,
+  `year` int(2) NOT NULL,
   `semester` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -201,43 +203,43 @@ CREATE TABLE IF NOT EXISTS `info` (
 -- Dumping data for table `info`
 --
 
-INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `semester`) VALUES
-(3, '204', '8:00-9:20', 'TTH', 'Spr 15'),
-(4, '205', '2:00-3:20', 'TTH', 'Spr 15'),
-(7, '204', '10:00-10:50', 'MWF', 'Spr 15'),
-(11, '201', '12:30-1:50', 'MWF', 'Spring 15'),
-(12, 'CS201', '8:00-8:50', 'MWF', 'Fall 04'),
-(13, 'CS 204', '9:00-9:50', 'MWF', 'Spring 11'),
-(14, 'EC 205', '2:00-2:50', 'MWF', 'Summer I'),
-(15, 'EC 204', '9:00-10:50', 'MWF', 'Summer I 14'),
-(16, 'ENGCTR 201', '11:00-12:20', 'TR', 'Fall 11'),
-(17, 'Livermore 101', '12:30-1:50', 'TR', 'Spring 12'),
-(18, 'ENGCTR 204', '11:00-11:50', 'MWF', 'Fall 13'),
-(19, 'PE 118', '9:30-10:50', 'TR', 'Spring 11'),
-(20, 'Holden Hall 154', '9:30-10:50', 'TR', 'Spring 14'),
-(21, 'PE 118', '10:00-10:50', 'MWF', 'Fall 12'),
-(22, 'ENGCTR 205', '10:00-10:50', 'MWF', 'Spring 14'),
-(23, 'Holden Hall 154', '11:00-12:20', 'TR', 'Fall 14'),
-(24, 'MATH 108', '11:00-12:20', 'TR', 'Spring 11'),
-(25, 'Holden Hall 225', '9:30-10:50', 'TR', 'Fall 12'),
-(26, 'ENGCTR 205', '1:00-1:50', 'MWF', 'Fall 13'),
-(27, 'ENGCTR 205', '8:00-9:20', 'TR', 'Spring 13'),
-(28, 'ENGCTR 201', '12:00-12:50', 'MWF', 'Fall 13'),
-(29, 'ENGCTR 204', '11:00-12:20', 'TR', 'Fall 14'),
-(30, 'CHEME 101', '9:30-10:50', 'TR', 'Fall 13'),
-(31, 'ENGCTR 204', '10:00-10:50', 'MWF', 'Fall 12'),
-(32, 'ENGCTR 204', '12:30-1:50', 'TR', 'Spring 11'),
-(33, 'CE 211', '2:00-3:20', 'TR', 'Spring 13'),
-(34, 'ENGCTR 205', '11:00-12:20', 'TR', 'Fall 13'),
-(35, 'ENGCTR 205', '4:00-4:50', 'MWF', 'Spring 14'),
-(36, 'ENGCTR 110', '2:00-2:50', 'MWF', 'Fall 11'),
-(37, 'ENGCTR 204', '2:00-2:50', 'MWF', 'Fall 12'),
-(38, 'Livermore 104', '3:00-3:50', 'MWF', 'Spring 12'),
-(39, 'Livermore 104', '3:30-4:50', 'TR', 'Spring 12'),
-(40, 'ENGCTR 110', '8:00-9:20', 'TR', 'Spring 14'),
-(41, 'ENGCTR 201', '9:00-9:50', 'MWF', 'Fall 13'),
-(42, 'ENGCTR 204', '9:00-9:50', 'MWF', 'Fall 12'),
-(43, 'ENGCTR 110', '10:00-10:50', 'MWF', 'Spring 13');
+INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `year`, `semester`) VALUES
+(3, 'CS 204', '8:00-9:20', 'TR', 15, 'Spring'),
+(4, 'CS 205', '2:00-3:20', 'TR', 15, 'Spring'),
+(7, 'CS 204', '10:00-10:50', 'MWF', 15, 'Spring'),
+(11, 'CS 201', '12:30-1:50', 'MWF', 15, 'Spring'),
+(12, 'CS 201', '8:00-8:50', 'MWF', 4, 'Fall'),
+(13, 'CS 204', '9:00-9:50', 'MWF', 11, 'Spring'),
+(14, 'EC 205', '2:00-2:50', 'MWF', 14, 'Summer II'),
+(15, 'EC 204', '9:00-10:50', 'MWF', 14, 'Summer I'),
+(16, 'ENGCTR 201', '11:00-12:20', 'TR', 11, 'Fall'),
+(17, 'Livermore 101', '12:30-1:50', 'TR', 12, 'Spring'),
+(18, 'ENGCTR 204', '11:00-11:50', 'MWF', 13, 'Fall'),
+(19, 'PE 118', '9:30-10:50', 'TR', 11, 'Spring'),
+(20, 'Holden Hall 154', '9:30-10:50', 'TR', 14, 'Spring'),
+(21, 'PE 118', '10:00-10:50', 'MWF', 12, 'Fall'),
+(22, 'ENGCTR 205', '10:00-10:50', 'MWF', 14, 'Spring'),
+(23, 'Holden Hall 154', '11:00-12:20', 'TR', 14, 'Fall'),
+(24, 'MATH 108', '11:00-12:20', 'TR', 11, 'Spring'),
+(25, 'Holden Hall 225', '9:30-10:50', 'TR', 12, 'Fall'),
+(26, 'ENGCTR 205', '1:00-1:50', 'MWF', 13, 'Fall'),
+(27, 'ENGCTR 205', '8:00-9:20', 'TR', 13, 'Spring'),
+(28, 'ENGCTR 201', '12:00-12:50', 'MWF', 13, 'Fall'),
+(29, 'ENGCTR 204', '11:00-12:20', 'TR', 14, 'Fall'),
+(30, 'CHEME 101', '9:30-10:50', 'TR', 13, 'Fall'),
+(31, 'ENGCTR 204', '10:00-10:50', 'MWF', 12, 'Fall'),
+(32, 'ENGCTR 204', '12:30-1:50', 'TR', 11, 'Spring'),
+(33, 'CE 211', '2:00-3:20', 'TR', 13, 'Spring'),
+(34, 'ENGCTR 205', '11:00-12:20', 'TR', 13, 'Fall'),
+(35, 'ENGCTR 205', '4:00-4:50', 'MWF', 14, 'Spring'),
+(36, 'ENGCTR 110', '2:00-2:50', 'MWF', 11, 'Fall'),
+(37, 'ENGCTR 204', '2:00-2:50', 'MWF', 12, 'Fall'),
+(38, 'Livermore 104', '3:00-3:50', 'MWF', 12, 'Spring'),
+(39, 'Livermore 104', '3:30-4:50', 'TR', 12, 'Spring'),
+(40, 'ENGCTR 110', '8:00-9:20', 'TR', 14, 'Spring'),
+(41, 'ENGCTR 201', '9:00-9:50', 'MWF', 13, 'Fall'),
+(42, 'ENGCTR 204', '9:00-9:50', 'MWF', 12, 'Fall'),
+(43, 'ENGCTR 110', '10:00-10:50', 'MWF', 13, 'Spring');
 
 -- --------------------------------------------------------
 
@@ -256,8 +258,6 @@ CREATE TABLE IF NOT EXISTS `instructor` (
 
 INSERT INTO `instructor` (`name`, `dateHired`) VALUES
 ('G Gelfond', 'Fall 12'),
-('Gelfond Jr.', 'Fall 11'),
-('Gelfond Sr.', 'Fall 00'),
 ('Kang', 'Spring 12'),
 ('Lakhani', 'Spring 12'),
 ('Lamprecht', 'Spring 14'),
@@ -294,12 +294,10 @@ CREATE TABLE IF NOT EXISTS `professor` (
 --
 
 INSERT INTO `professor` (`name`, `tenure`, `title`, `load_distr`, `request_code`, `request_title`, `request_justif`) VALUES
-('Gelfond Sr.', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Lim', 'no', 'assistant', 'Spring', 'CS4352', 'Operating Systems', 'Testing with scrolling text please work'),
 ('Zhang', 'no', 'Associate', 'NA', 'CS5432', 'My Test Course', 'Testing one more time'),
 ('M Gelfond', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Myagmarjav', 'yes', 'Full', 'NA', NULL, NULL, NULL),
-('G Gelfond', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Rushton', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Mengel', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Sridharan', 'yes', 'Full', 'NA', NULL, NULL, NULL),
@@ -399,7 +397,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 --
 
 INSERT INTO `teacher` (`name`, `type`) VALUES
-('Gelfond Jr.', 'GFTI');
+('G Gelfond', 'FTI');
 
 -- --------------------------------------------------------
 
@@ -408,7 +406,7 @@ INSERT INTO `teacher` (`name`, `type`) VALUES
 --
 DROP TABLE IF EXISTS `coursesectionlink`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coursesectionlink` AS (select `course`.`code` AS `code`,`section`.`section_num` AS `section_num`,`section`.`enrollment` AS `enrollment`,`section`.`capacity` AS `capacity`,`assign`.`instr_name` AS `instr_name`,`assign`.`book_title` AS `book_title`,`assign`.`book_author` AS `book_author`,`assign`.`book_edition` AS `book_edition`,`assign`.`book_isbn` AS `book_isbn`,`assign`.`book_publisher` AS `book_publisher`,`info`.`semester` AS `semester`,`info`.`id` AS `id`,`section`.`crn` AS `crn` from ((((`course` join `has`) join `section`) join `assign`) join `info`) where ((`has`.`code` = `course`.`code`) and (`has`.`crn` = `section`.`crn`) and (`assign`.`crn` = `section`.`crn`) and (`info`.`id` = `assign`.`info_id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `coursesectionlink` AS (select `course`.`code` AS `code`,`course`.`title` AS `title`,`section`.`section_num` AS `section_num`,`section`.`enrollment` AS `enrollment`,`section`.`capacity` AS `capacity`,`assign`.`instr_name` AS `instr_name`,`assign`.`book_title` AS `book_title`,`assign`.`book_author` AS `book_author`,`assign`.`book_edition` AS `book_edition`,`assign`.`book_isbn` AS `book_isbn`,`assign`.`book_publisher` AS `book_publisher`,`info`.`semester` AS `semester`,`info`.`year` AS `year`,`info`.`id` AS `id`,`section`.`crn` AS `crn` from ((((`course` join `has`) join `section`) join `assign`) join `info`) where ((`has`.`code` = `course`.`code`) and (`has`.`crn` = `section`.`crn`) and (`assign`.`crn` = `section`.`crn`) and (`info`.`id` = `assign`.`info_id`)));
 
 --
 -- Indexes for dumped tables
@@ -492,7 +490,7 @@ ADD CONSTRAINT `has_ibfk_2` FOREIGN KEY (`code`) REFERENCES `course` (`code`) ON
 -- Constraints for table `professor`
 --
 ALTER TABLE `professor`
-ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`name`);
+ADD CONSTRAINT `professor_ibfk_1` FOREIGN KEY (`name`) REFERENCES `instructor` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher`

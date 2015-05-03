@@ -37,10 +37,24 @@ if(! $conn )
 
 mysql_select_db('projectdb');
 
-$years = $_POST['years'];
+$n = $_POST['years'];
+$today = getdate();
+$year = $today["year"] - 2000 - $n;
+if($year < 0){
+	$year = $year + 100;
+}
+
+$counter = 0;
+$level_enroll = [];
+while($counter < 5){
+	$level_enroll[$counter] = 0;
+	$counter++;
+}
+$counter = 0;
 
 $sql1 = "SELECT code, sum(enrollment) AS total, semester " .
 		"From courseSectionLink " .
+		"Where year >= '$year' " .
 		"Group By code;" ;
 $retval1 = mysql_query( $sql1, $conn );
 
@@ -50,44 +64,38 @@ if(! $retval1)
 }
 if(mysql_num_rows($retval1) > 0) {
     // output data of each row
-    echo "<table id = 't01' style = 'width:100%'> <caption>Enrollment by Course</ caption><br><br>";
-    
+    echo "<table id = 't01' style = 'width:20%'> <caption>Enrollment by Course</ caption><br><br>";
+    $reg_sem[] = [mysql_num_rows($retval1)];
     while($row = mysql_fetch_array($retval1)) {
 		if($row["semester"][2] != 'u'){
-        echo "<tr>
+			// keep a copy of all these courses for level calculation
+			$reg_sem[$counter] = $row;
+			$counter = $counter + 1;
+			// output individual course enrollment in a table
+			echo "<tr>
                 <td> - Course: " . $row["code"]. "</td>
                 <td> - Total Enrollment: " . $row["total"]. "</td>
             </tr>" ;
 		}
     }
     echo "</table>";
-} else {
-    echo "<font color = 'red' >0 results\n";
-}
-$sql2 = "SELECT code, enrollment " .
-		"From courseSectionLink ";
-$retval2 = mysql_query( $sql2, $conn );
-
-if(! $retval2)
-{
-  die('Could not update data: ' . mysql_error());
-}
-if(mysql_num_rows($retval2) > 0) {
-    // output data of each row
-    echo "<table id = 't01' style = 'width:100%'> <caption><br><br>Course Level Enrollment</ caption><br><br>";
-    
-    while($row = mysql_fetch_array($retval2)) {
-		if($row["semester"][2] != 'u'){
-        echo "<tr>
-                <td> - Course: " . $row["code"]. "</td>
-                <td> - Course Level: " . $row["code"][2]*1000 . "</td>
+	// Add the totals of level enrollment in a new array
+	for($j = 0; $j < $counter; $j ++){
+		$level = (($reg_sem[$j]["code"][2])-1);
+		$level_enroll[$level] += $reg_sem[$j]["total"];	
+	}
+	// output the level course enrollment in a table
+	echo "<table id = 't01' style = 'width:20%'><br><caption>Enrollment by Course Level</ caption><br><br>";
+	for($k = 0; $k < 5; $k ++){
+		$level = ($k + 1) * 1000;
+		echo "<tr>
+                <td> - Course Level: " . $level . "</td>
+                <td> - Total Enrollment: " . $level_enroll[$k]. "</td>
             </tr>" ;
-		}
-    }
-    echo "</table>";
+	}
 } else {
     echo "<font color = 'red' >0 results\n";
-}
+	}
 }
 else{
 ?>
@@ -100,7 +108,7 @@ else{
 		</tr>
 		<tr>
 			<td width="60"> </td>
-			<td><input name="update" type="submit" id="update" value="Add"></td>
+			<td><input name="update" type="submit" id="update" value="Submit"></td>
 		</tr>
 	</table>
 </form>
