@@ -38,9 +38,15 @@ if(! $conn )
 mysql_select_db('projectdb');
 
 $n = $_POST['years'];
+$today = getdate();
+$year = $today["year"] - 2000 - $n;
+if($year < 0){
+	$year = $year + 100;
+}
 
-$sql1 = "SELECT *" .
-"FROM courseSectionLink";
+$sql1 = "SELECT code, instr_name, enrollment " .
+		"FROM courseSectionLink " .
+		"Where year >= '$year' AND (semester = 'Summer I' OR semester = 'Summer II'); ";
 $retval = mysql_query( $sql1, $conn );
 
 if(! $retval)
@@ -49,31 +55,14 @@ if(! $retval)
 }
 if(mysql_num_rows($retval) > 0) {
     // output data of each row
-    echo "<table id = 't01' style = 'width:100%'> <caption>Summer Courses</ caption><br><br>";
+    echo "<table id = 't01' style = 'width:25%'> <caption>Summer Courses</ caption><br><br>";
 
     while($row = mysql_fetch_array($retval)) {
-    	
-    	$sql_semester = $row['semester'];
-    	
-    	$broken_semester = explode(" ", $sql_semester);
-    	
-    	if($broken_semester[0] == "Summer"){
-    		$year_index = 2;
-    	}
-    	else{
-    		$year_index = 1;
-    	}
-    	
-    	$year = $broken_semester[$year_index];
-    	$year = $year - $n;
-    	
-    	if($broken_semester[0] == "Summer" && $broken_semester[2] >= $year){
-        	echo "<tr>
-                	<td> - Course Code: " . $row['code']. "</td>
-                	<td> - Instructor: " . $row['instr_name']. "</td>
-                	<td> - Enrollment: " . $row['enrollment']. "</td>
-            	</tr>" ;
-        }
+		echo "<tr>
+				<td> - Course Code: " . $row['code']. "</td>
+				<td> - Instructor: " . $row['instr_name']. "</td>
+				<td> - Enrollment: " . $row['enrollment']. "</td>
+			</tr>" ;
     }
     echo "</table>";
 } else {

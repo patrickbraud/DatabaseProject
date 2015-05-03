@@ -36,9 +36,16 @@ if(! $conn )
 }
 
 $name = $_POST['name'];
-//$n = $_POST['n'];
+$n = $_POST['years'];
+$today = getdate();
+$year = $today["year"] - 2000 - $n;
+if($year < 0){
+	$year = $year + 100;
+}
 
-$sql1 = "SELECT DISTINCT course.code, course.title, course.semester, section.enrollment, info.room_num FROM course, assign, has, info, section WHERE assign.instr_name = '$name' AND assign.crn = has.crn AND has.code = course.code AND has.crn = section.crn AND assign.info_id = info.id";
+$sql1 = "SELECT code, title, courseSectionLink.semester, courseSectionLink.year, enrollment, info.room_num " .
+		"FROM courseSectionLink, info " . 
+		"WHERE courseSectionLink.year >= '$year' AND instr_name = '$name' AND courseSectionLink.id = info.id; ";
 	   
 mysql_select_db('projectdb');
 $retval = mysql_query( $sql1, $conn );
@@ -49,13 +56,13 @@ if(! $retval)
 if(mysql_num_rows($retval) > 0) {
     echo "<br>Searching for courses taught by '$name'.<br><br>";
     // output data of each row
-    echo "<table id = 't01' style = 'width:100%'> <caption>Courses</ caption><br><br>";
+    echo "<table id = 't01' style = 'width:50%'> <caption>Courses</ caption><br><br>";
     
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
-                <td>Code: " . $row["code"]. "</td>
+                <td> - Code: " . $row["code"]. "</td>
                 <td> - Title: " . $row["title"]. "</td>
-                <td> - Semester: " . $row["semester"]. "</td>
+                <td> - Semester: " . $row["semester"]. " " . $row["year"]. "</td>
                 <td> - Enrollment: " . $row["enrollment"]. "</td>
                 <td> - Building: " . $row["room_num"]. "</td>
             </tr>" ;
@@ -79,7 +86,7 @@ else
 		</tr>
 		<tr>
 			<td width="100">n Years</td>
-			<td><input name="dateHired" type="text" id="n"></td>
+			<td><input name="years" type="text" id="years"></td>
 		</tr>
 		<tr>
 			<td width="100"> </td>

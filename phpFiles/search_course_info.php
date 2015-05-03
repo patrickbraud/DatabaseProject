@@ -47,8 +47,7 @@ if($year < 0){
 
 $sql1 = "SELECT code, title, section_num, instr_name, enrollment, semester, year ".
 		"FROM courseSectionLink " .
-		"WHERE code = '$code' AND year >= '$year' " .
-		"Group By year DESC;";
+		"WHERE code = '$code' AND year >= '$year'; ";
 $retval1 = mysql_query( $sql1, $conn );
 
 if(! $retval1)
@@ -59,10 +58,10 @@ if(mysql_num_rows($retval1) > 0) {
     echo "<br>Searching for Course '$code' .<br><br>";
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'> <caption>Course Information </ caption><br><br>";
-    
     while($row = mysql_fetch_array($retval1)) {
         echo "<tr>
                 <td> - Code: " . $row["code"]. "</td>
+				<td> - Section: " . $row["section_num"]. "</td>
 				<td> - Title: " . $row["title"]. "</td>
 				<td> - Instructor: " . $row["instr_name"]. "</td>         
                 <td> - Enrollment: " . $row["enrollment"]. "</td>

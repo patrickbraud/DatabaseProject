@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2015 at 07:51 AM
+-- Generation Time: May 03, 2015 at 09:12 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,6 +47,7 @@ INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_i
 (33241, 'Mengel', NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL),
 (35559, 'Swaminathan', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
 (36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
+(38473, 'Lopez-Benitez', NULL, NULL, NULL, 44, NULL, NULL, NULL, NULL, NULL),
 (39051, 'M Gelfond', NULL, NULL, NULL, 16, NULL, NULL, NULL, NULL, NULL),
 (44376, 'Myagmarjav', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
 (45540, 'Lim', NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL),
@@ -63,7 +64,7 @@ INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_i
 (73657, 'Lim', NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
 (75975, 'Zhang', NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, NULL),
 (79326, 'Mengel', NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
-(79843, 'Youn', NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL),
+(79843, 'Youn', 'Edward Wertz', 8, NULL, 24, NULL, NULL, NULL, NULL, NULL),
 (80216, 'Lopez-Benitez', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
 (83027, 'Lopez-Benitez', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
 (83457, 'Lakhani', NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
@@ -175,14 +176,14 @@ INSERT INTO `has` (`crn`, `code`) VALUES
 (26772, 'CS4311'),
 (38907, 'CS4352'),
 (84012, 'CS4354'),
-(46069, 'CS4379'),
 (25126, 'CS5000'),
 (72702, 'CS5331'),
 (83457, 'CS5352'),
 (33241, 'CS5373'),
 (51143, 'CS5375'),
 (52473, 'CS5381'),
-(44662, 'CS5383');
+(44662, 'CS5383'),
+(38473, 'CS4379');
 
 -- --------------------------------------------------------
 
@@ -239,7 +240,8 @@ INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `year`, `semester`) V
 (40, 'ENGCTR 110', '8:00-9:20', 'TR', 14, 'Spring'),
 (41, 'ENGCTR 201', '9:00-9:50', 'MWF', 13, 'Fall'),
 (42, 'ENGCTR 204', '9:00-9:50', 'MWF', 12, 'Fall'),
-(43, 'ENGCTR 110', '10:00-10:50', 'MWF', 13, 'Spring');
+(43, 'ENGCTR 110', '10:00-10:50', 'MWF', 13, 'Spring'),
+(44, 'EE 108', '9:00-9:50', 'MWF', 15, 'Fall');
 
 -- --------------------------------------------------------
 
@@ -335,13 +337,13 @@ INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (33241, 9, 18, 1),
 (35559, 22, 34, 1),
 (36429, 45, 50, 1),
+(38473, 26, 40, 2),
 (38907, 29, 33, 1),
 (39051, 37, 40, 1),
 (44376, 28, 40, 3),
 (44662, 16, 17, 1),
 (45540, 20, 35, 4),
 (45960, 29, 33, 1),
-(46069, 26, 33, 1),
 (46600, 23, 36, 5),
 (51143, 12, 17, 1),
 (52473, 13, 17, 1),
@@ -378,6 +380,7 @@ CREATE TABLE IF NOT EXISTS `ta` (
 --
 
 INSERT INTO `ta` (`name`) VALUES
+('Edward Wertz'),
 ('Elham Hojati'),
 ('Tara Parker');
 

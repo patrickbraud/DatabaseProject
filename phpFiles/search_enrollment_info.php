@@ -54,7 +54,7 @@ $counter = 0;
 
 $sql1 = "SELECT code, sum(enrollment) AS total, semester " .
 		"From courseSectionLink " .
-		"Where year >= '$year' " .
+		"Where year >= '$year' AND (semester = 'Spring' OR semester = 'Fall')" .
 		"Group By code;" ;
 $retval1 = mysql_query( $sql1, $conn );
 
@@ -67,16 +67,14 @@ if(mysql_num_rows($retval1) > 0) {
     echo "<table id = 't01' style = 'width:20%'> <caption>Enrollment by Course</ caption><br><br>";
     $reg_sem[] = [mysql_num_rows($retval1)];
     while($row = mysql_fetch_array($retval1)) {
-		if($row["semester"][2] != 'u'){
-			// keep a copy of all these courses for level calculation
-			$reg_sem[$counter] = $row;
-			$counter = $counter + 1;
-			// output individual course enrollment in a table
-			echo "<tr>
-                <td> - Course: " . $row["code"]. "</td>
-                <td> - Total Enrollment: " . $row["total"]. "</td>
-            </tr>" ;
-		}
+		// keep a copy of all these courses for level calculation
+		$reg_sem[$counter] = $row;
+		$counter = $counter + 1;
+		// output individual course enrollment in a table
+		echo "<tr>
+			<td> - Course: " . $row["code"]. "</td>
+			<td> - Total Enrollment: " . $row["total"]. "</td>
+		</tr>" ;
     }
     echo "</table>";
 	// Add the totals of level enrollment in a new array

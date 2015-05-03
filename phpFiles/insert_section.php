@@ -36,6 +36,7 @@ if(! $conn )
 }
 
 $semester = $_POST['semester'];
+$year = $_POST['year'];
 $section_num = $_POST['section_num'];
 $crn = rand(10000, 99999);
 $code = $_POST['code'];
@@ -69,7 +70,7 @@ if($result3){
 }
 
 $sql4 = "Insert into info ". 
-		"Values('$info_id', '$room_num', '$class_time', '$days', '$semester'); ";
+		"Values('$info_id', '$room_num', '$class_time', '$days', '$year', '$semester'); ";
 $result4 = mysql_query( $sql4, $conn );
 
 $sql5 = "Insert into assign(crn, instr_name, info_id) ". 
@@ -94,6 +95,10 @@ else
 		<tr>
 			<td width="100">Semester</td>
 			<td><input name="semester" type="text" id="semester"></td>
+		</tr>
+		<tr>
+			<td width="100">Year</td>
+			<td><input name="year" type="text" id="year"></td>
 		</tr>
 		<tr>
 			<td width="100">Course Code</td>
