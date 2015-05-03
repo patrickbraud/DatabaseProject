@@ -37,76 +37,53 @@
 		
 		$name = $_POST['name'];
 		$full_semester = $_POST['semester'];
-		
-		$exploded = explode(" ", $full_semester);
-		$arr_size = count($exploded);
-		
-		$semester = $exploded[0];
-		if($arr_size == 2){
-			$year = (int)$exploded[1];
-		}
-		else{
-			$year = (int)$exploded[2];
-			$summer_term = $exploded[1];
-		}
-		
-		switch($semester){
+		$year = $_POST['years'];
+
+		switch($full_semester){
 			case "Fall": 
 				$next_semester = "Spring";
+				$year = $year + 1;
 				break;
 			case "Spring":
 				$next_semester = "Summer I";
 				break;
-			case "Summer":
-				if($summer_term == "I"){
-					$next_semester = "Summer II";
-				}
-				else if($summer_term == "II"){
-					$next_semester = "Fall";
-				 }
+			case "Summer I":
+				$next_semester = "Summer II";
+				break;
+			case "Summer II":
+				$next_semester = "Fall";
 				 break;
 			default:
 				die("Invalid Semester");	 			
 		}
 		
-		$year = (int)$year + 1;
-		$next_full_semester = "$next_semester $year";
-		
-		$sql1 = "SELECT code, classTime, days, room_num " . 
-				"FROM has, info " .
-				"WHERE has.crn = (SELECT assign.crn " . 
-								 "FROM info, assign " . 
-								 "WHERE info.id = assign.info_id " . 
-								 	   "AND info.semester = '$next_full_semester') " .
-						"AND info.id = (SELECT info.id " . 
-								 	   "FROM info, assign " . 
-								 	   "WHERE info.id = assign.info_id " . 
-								 	   "AND info.semester = '$next_full_semester') ";
-		
-		$sql2 = "SELECT name " .
-				"FROM professor " . 
-				"WHERE name = '$name'";
-				
 		mysql_select_db('projectdb');
+		
+		$sql1 = "Select code, info.classTime, info.days, info.room_num " .
+				"From courseSectionLink, info " . 
+				"Where instr_name = '$name' AND courseSectionLink.id = info.id AND courseSectionLink.year = '$year' AND courseSectionLink.semester = '$next_semester'; ";
 		$retval1 = mysql_query( $sql1, $conn );
-		$result = mysql_query( $sql2, $conn);
+		
 		if(! $retval1)
 		{
   			die('Could not update data: ' . mysql_error());
 		}
 		
-		
-		if (mysql_num_rows($result) > 0 && $retval1 != 0) {
+		if (mysql_num_rows($retval1) > 0) {
     		// output data of each row
-    		while($row = mysql_fetch_array($retval1)){
-        		echo $row['code'] .  " " . $row['classTime'] . " " . $row['days'] . 
-        			  " " . $row['room_num'];
-        		
+			echo "<table id = 't01' style = 'width:50%'> <caption>Next Semester Courses</ caption><br><br>";
+    		while($row = mysql_fetch_array($retval1)){        		
+        		echo "<tr>
+						<td> Code - " . $row['code'] . "</td>
+						<td> Time - ". $row['classTime'] . "</td>
+						<td> Room - " . $row['room_num'] . "</td>
+						<td> Semester - " . $next_semester . " " . $year . "</td>
+					</tr>" ;
 			}
+    echo "</table>";
 		} else {
     		echo "Invalid Professor / Semester";
 		}
-		
 		mysql_close($conn);
 	}
 	else
@@ -116,16 +93,20 @@
 <form method="post" action="<?php $_PHP_SELF ?>">
 	<table width="400" border="0" cellspacing="1" cellpadding="2">
 		<tr>
-			<td width="120">Professor Name</td>
+			<td width="175">Professor Name</td>
 			<td><input name="name" type="text" id="name"></td>
 		</tr>
 		<tr>
-			<td width="120">Current Semester (e.g. Fall 15, Summer I 16)</td>
+			<td width="175">Current Semester (e.g. Fall, Summer I)</td>
 			<td><input name="semester" type="text" id="semester"></td>
 		</tr>
 		<tr>
+			<td width="175">Current Year (e.g. 14, 15)</td>
+			<td><input name="years" type="text" id="years"></td>
+		</tr>
+		<tr>
 			<td width="100"> </td>
-			<td><input name="update" type="submit" id="update" value="Add"></td>
+			<td><input name="update" type="submit" id="update" value="Search"></td>
 		</tr>
 	</table>
 </form>
