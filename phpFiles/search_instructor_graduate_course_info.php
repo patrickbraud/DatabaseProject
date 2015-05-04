@@ -49,7 +49,7 @@
             $year = $year + 100;
         }
         
-        echo "Searching for professor '$name'... <br><br>";
+        echo "Searching for professor $name... <br><br>";
         
         $sql1 = "SELECT assign.ta_hours AS ta_hours, coursesectionlink.enrollment AS enrollment, coursesectionlink.code AS code FROM coursesectionlink, assign WHERE assign.crn = coursesectionlink.crn AND coursesectionlink.instr_name = '$name' AND coursesectionlink.year >= '$year' GROUP BY coursesectionlink.code;";
         
@@ -107,7 +107,7 @@
             }
             echo "Ratio between total number of TA hours and the total enrollment<br>";
             echo "<tr>
-                    <td> - Undergraduate: " . $ratio1 ."</td>
+                    <td> - Undergraduate: " . $ratio1 ."</td><br>
                     <td> - Graduate: " . $ratio2 ."</td>
                 </tr>" ;
         } else {
@@ -179,7 +179,7 @@
         
             echo "Ratio between total number of TA hours and the total enrollment<br>";
             echo "<tr>
-            <td> - Undergraduate: " . $totalUndergradCourses ."</td>
+            <td> - Undergraduate: " . $totalUndergradCourses ."</td><br>
             <td> - Graduate: " . $totalGradCourses ."</td>
             </tr>" ;
         } else {

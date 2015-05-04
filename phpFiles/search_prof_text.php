@@ -56,14 +56,23 @@ if(mysql_num_rows($retval) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:100%'> <caption>Textbooks</ caption><br><br>";
     
+    echo "<tr>
+                <td>Semester: </td>
+                <td>Title: </td>
+                <td>Author: </td>
+				<td>Edition: </td>
+				<td>ISBN: </td>
+                <td>Publisher: </td>
+            </tr>" ;
+    
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
-                <td> - Semester: " . $row["semester"] . " " . $row['year'] . "</td>
-                <td> - Title: " . $row["book_title"]. "</td>
-                <td> - Author: " . $row["book_author"]. "</td>
-				<td> - Edition: " . $row["book_edition"]. "</td>
-				<td> - ISBN: " . $row["book_isbn"]. "</td>
-                <td> - Publisher: " . $row["book_publisher"]. "</td>
+                <td> - " . $row["semester"] . " " . $row['year'] . "</td>
+                <td> - " . $row["book_title"]. "</td>
+                <td> - " . $row["book_author"]. "</td>
+				<td> - " . $row["book_edition"]. "</td>
+				<td> - " . $row["book_isbn"]. "</td>
+                <td> - " . $row["book_publisher"]. "</td>
             </tr>" ;
     }
     echo "</table>";

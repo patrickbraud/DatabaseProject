@@ -59,13 +59,21 @@ if(mysql_num_rows($retval) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'> <caption>Searching for courses taught by $name</ caption><br><br>";
     
+    echo "<tr>
+                <td> Code: </td>
+                <td> Title: </td>
+                <td> Semester: </td>
+                <td> Enrollment: </td>
+                <td> Building: </td>
+            </tr>" ;
+            
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
-                <td> - Code: " . $row["code"]. "</td>
-                <td> - Title: " . $row["title"]. "</td>
-                <td> - Semester: " . $row["semester"]. " " . $row["year"]. "</td>
-                <td> - Enrollment: " . $row["enrollment"]. "</td>
-                <td> - Building: " . $row["room_num"]. "</td>
+                <td> - " . $row["code"]. "</td>
+                <td> - " . $row["title"]. "</td>
+                <td> - " . $row["semester"]. " " . $row["year"]. "</td>
+                <td> - " . $row["enrollment"]. "</td>
+                <td> - " . $row["room_num"]. "</td>
             </tr>" ;
     }
     echo "</table>";
