@@ -57,7 +57,7 @@ if(! $retval)
 if(mysql_num_rows($retval) > 0) {
     
     // output data of each row
-    echo "<table id = 't01' style = 'width:50%'> <caption>Courses</ caption><br><br>";
+    echo "<table id = 't01' style = 'width:50%'> <caption>Searching for courses taught by $name</ caption><br><br>";
     
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
