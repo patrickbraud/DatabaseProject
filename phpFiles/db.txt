@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 03, 2015 at 09:12 PM
+-- Host: localhost
+-- Generation Time: May 04, 2015 at 02:50 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -39,38 +39,41 @@ CREATE TABLE IF NOT EXISTS `assign` (
 --
 
 INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_id`, `book_title`, `book_author`, `book_edition`, `book_isbn`, `book_publisher`) VALUES
-(25126, 'Rushton', NULL, NULL, NULL, 35, NULL, NULL, NULL, NULL, NULL),
-(26772, 'Shin', NULL, NULL, NULL, 30, NULL, NULL, NULL, NULL, NULL),
-(30395, 'Lamprecht', NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL),
+(25126, 'Rushton', NULL, NULL, NULL, 35, 'Title 23', 'Author 23', 23, 1134, 'Publisher 23'),
+(26772, 'Shin', NULL, NULL, NULL, 30, 'Title 16', 'Author 16', 16, 1127, 'Publisher 16'),
+(30395, 'Lamprecht', NULL, NULL, NULL, 21, 'Title 7', 'Author 7', 7, 1117, 'Publisher 7'),
 (30509, 'youn', NULL, NULL, NULL, 26, NULL, NULL, NULL, NULL, NULL),
-(32989, 'Lim', NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, NULL),
+(31017, 'Youn', NULL, NULL, NULL, 47, NULL, NULL, NULL, NULL, NULL),
+(32989, 'Lim', NULL, NULL, NULL, 15, 'Title 8', 'Author 8', 8, 1118, 'Publisher 8'),
 (33241, 'Mengel', NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL),
 (35559, 'Swaminathan', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
 (36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
-(38473, 'Lopez-Benitez', NULL, NULL, NULL, 44, NULL, NULL, NULL, NULL, NULL),
-(39051, 'M Gelfond', NULL, NULL, NULL, 16, NULL, NULL, NULL, NULL, NULL),
-(44376, 'Myagmarjav', NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, NULL),
-(45540, 'Lim', NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL),
-(45960, 'Lakhani', NULL, NULL, NULL, 29, NULL, NULL, NULL, NULL, NULL),
-(46600, 'Rushton', NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL),
+(38473, 'Lopez-Benitez', NULL, NULL, NULL, 44, 'Title 22', 'Author 22', 22, 1133, 'Publisher 22'),
+(39051, 'M Gelfond', NULL, NULL, NULL, 16, 'Title 2', 'Author 2', 2, 1112, 'Publisher 2'),
+(44376, 'Myagmarjav', NULL, NULL, NULL, 17, 'Title 3', 'Author 3', 3, 1113, 'Publisher 3'),
+(45540, 'Lim', NULL, NULL, NULL, 12, 'Title 12', 'Author 12', 12, 1123, 'Publisher 12'),
+(45960, 'Lakhani', NULL, NULL, NULL, 29, 'Title 15', 'Author 15', 15, 1126, 'Publisher 15'),
+(46600, 'Rushton', NULL, NULL, NULL, 19, 'Title 5', 'Author 5', 5, 1115, 'Publisher 5'),
 (51143, 'Rushton', NULL, NULL, NULL, 41, NULL, NULL, NULL, NULL, NULL),
 (52473, 'Lakhani', NULL, NULL, NULL, 42, NULL, NULL, NULL, NULL, NULL),
 (56263, 'Zhang', NULL, NULL, NULL, 14, NULL, NULL, NULL, NULL, NULL),
-(56354, 'Zhang', NULL, NULL, NULL, 27, NULL, NULL, NULL, NULL, NULL),
-(59167, 'Zhang', 'Tara Parker', 12, 'no', 11, NULL, NULL, NULL, NULL, NULL),
-(65880, 'G Gelfond', NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, NULL),
+(56354, 'Zhang', NULL, NULL, NULL, 27, 'Title 13', 'Author 13', 13, 1124, 'Publisher 13'),
+(59167, 'Zhang', 'Tara Parker', 12, 'no', 11, 'Title 19', 'Author 19', 19, 1130, 'Publisher 19'),
+(64704, 'Youn', NULL, NULL, NULL, 45, 'Title 17', 'Author 17', 17, 1128, 'Publisher 17'),
+(65880, 'G Gelfond', NULL, NULL, NULL, 18, 'Title 4', 'Author 4', 4, 1114, 'Publisher 4'),
 (67075, 'Mengel', NULL, NULL, NULL, 38, NULL, NULL, NULL, NULL, NULL),
-(72702, 'M Gelfond', NULL, NULL, NULL, 36, NULL, NULL, NULL, NULL, NULL),
+(72702, 'M Gelfond', NULL, NULL, NULL, 36, 'Title 24', 'Author 24', 24, 1135, 'Publisher 24'),
 (73657, 'Lim', NULL, NULL, NULL, 31, NULL, NULL, NULL, NULL, NULL),
-(75975, 'Zhang', NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, NULL),
+(75975, 'Zhang', NULL, NULL, NULL, 13, 'Title 20', 'Author 20', 20, 1131, 'Publisher 20'),
 (79326, 'Mengel', NULL, NULL, NULL, 39, NULL, NULL, NULL, NULL, NULL),
-(79843, 'Youn', 'Edward Wertz', 8, NULL, 24, NULL, NULL, NULL, NULL, NULL),
-(80216, 'Lopez-Benitez', NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL),
-(83027, 'Lopez-Benitez', NULL, NULL, NULL, 28, NULL, NULL, NULL, NULL, NULL),
+(79843, 'Youn', 'Edward Wertz', 8, NULL, 24, 'Title 10', 'Author 10', 10, 1121, 'Publisher 10'),
+(80216, 'Lopez-Benitez', NULL, NULL, NULL, 22, 'Title 9', 'Author 9', 9, 1119, 'Publisher 9'),
+(81619, 'Rushton', NULL, NULL, NULL, 46, 'Title 18', 'Author 18', 18, 1129, 'Publisher 18'),
+(83027, 'Lopez-Benitez', NULL, NULL, NULL, 28, 'Title 14', 'Author 14', 14, 1125, 'Publisher 14'),
 (83457, 'Lakhani', NULL, NULL, NULL, 37, NULL, NULL, NULL, NULL, NULL),
-(84012, 'Swaminathan', NULL, NULL, NULL, 33, NULL, NULL, NULL, NULL, NULL),
-(89725, 'Zhang', NULL, NULL, NULL, 25, NULL, NULL, NULL, NULL, NULL),
-(98952, 'Sridharan', NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL);
+(84012, 'Swaminathan', NULL, NULL, NULL, 33, 'Title 21', 'Author 21', 21, 1132, 'Publisher 21'),
+(89725, 'Zhang', NULL, NULL, NULL, 25, 'Title 11', 'Author 11', 11, 1122, 'Publisher 11'),
+(98952, 'Sridharan', NULL, NULL, NULL, 20, 'Title 6', 'Author 6', 6, 1116, 'Publisher 6');
 
 -- --------------------------------------------------------
 
@@ -104,6 +107,7 @@ INSERT INTO `course` (`code`, `semester`, `isReq`, `year`, `title`) VALUES
 ('CS3383', 'Spring', 'yes', '14-15', 'Theory of Automata'),
 ('CS4000', 'Spring', 'yes', '14-15', 'Special Topics in Computer Science'),
 ('CS4311', 'Fall', 'yes', '11-12', 'Senior Project Design'),
+('CS4331', 'Fall', 'yes', '12-13', 'Special CS'),
 ('CS4352', 'Fall', 'yes', '11-12', 'Operating Systems'),
 ('CS4354', 'Spr', 'yes', '14-15', 'Database Design'),
 ('CS4379', 'Spring', 'no', '13-14', 'Parallel & Concurrent Prog.'),
@@ -183,7 +187,10 @@ INSERT INTO `has` (`crn`, `code`) VALUES
 (51143, 'CS5375'),
 (52473, 'CS5381'),
 (44662, 'CS5383'),
-(38473, 'CS4379');
+(38473, 'CS4379'),
+(64704, 'CS4331'),
+(81619, 'CS4331'),
+(31017, 'CS4354');
 
 -- --------------------------------------------------------
 
@@ -241,7 +248,10 @@ INSERT INTO `info` (`id`, `room_num`, `classTime`, `days`, `year`, `semester`) V
 (41, 'ENGCTR 201', '9:00-9:50', 'MWF', 13, 'Fall'),
 (42, 'ENGCTR 204', '9:00-9:50', 'MWF', 12, 'Fall'),
 (43, 'ENGCTR 110', '10:00-10:50', 'MWF', 13, 'Spring'),
-(44, 'EE 108', '9:00-9:50', 'MWF', 15, 'Fall');
+(44, 'EE 108', '9:00-9:50', 'MWF', 15, 'Fall'),
+(45, 'ENGCTR 204', '10:00-10:50', 'MWF', 12, 'Fall'),
+(46, 'ENGCTR 201', '9:30-10:50', 'TR', 13, 'Spring'),
+(47, 'ENGCTR 205', '9:30-10:50', 'TR', 12, 'Summer II');
 
 -- --------------------------------------------------------
 
@@ -333,6 +343,7 @@ INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (26772, 13, 33, 1),
 (30395, 18, 20, 8),
 (30509, 19, 33, 2),
+(31017, 13, 20, 1),
 (32989, 15, 20, 8),
 (33241, 9, 18, 1),
 (35559, 22, 34, 1),
@@ -351,6 +362,7 @@ INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (56354, 20, 33, 1),
 (57815, 25, 50, 5),
 (59167, 21, 30, 1),
+(64704, 19, 20, 1),
 (65880, 21, 33, 4),
 (67075, 16, 17, 1),
 (72702, 12, 17, 1),
@@ -359,6 +371,7 @@ INSERT INTO `section` (`crn`, `enrollment`, `capacity`, `section_num`) VALUES
 (79326, 12, 18, 2),
 (79843, 21, 34, 4),
 (80216, 12, 33, 2),
+(81619, 22, 25, 1),
 (83027, 30, 33, 5),
 (83457, 11, 18, 2),
 (84012, 11, 33, 8),

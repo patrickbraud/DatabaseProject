@@ -49,6 +49,10 @@ $sql1 = "SELECT code, title, courseSectionLink.semester, courseSectionLink.year,
 		"FROM courseSectionLink, info " . 
 		"WHERE courseSectionLink.year >= '$year' AND instr_name = '$name' AND courseSectionLink.id = info.id " .
 		"Order By year DESC; ";
+		"WHERE courseSectionLink.year >= '$year' AND instr_name = '$name' AND courseSectionLink.id = info.id; ";
+	   
+
+mysql_select_db('projectdb');
 $retval = mysql_query( $sql1, $conn );
 
 $sql2 = "Select courseSectionLink.code as cc, count(courseSectionLink.code) As times, avg(ta_hours) As avg_ta, avg(enrollment) As avg_enroll, isReq " . 
@@ -64,10 +68,18 @@ if(! $retval)
   die('Could not update data: ' . mysql_error());
 }
 if(mysql_num_rows($retval) > 0) {
-    echo "<br>Searching for courses taught by '$name'.<br><br>";
-    // output data of each row
-    echo "<table id = 't01' style = 'width:50%'> <caption>Courses</ caption><br><br>";
     
+    // output data of each row
+    echo "<table id = 't01' style = 'width:50%'> <caption>Searching for courses taught by $name</ caption><br><br>";
+    
+    echo "<tr>
+                <td> Code: </td>
+                <td> Title: </td>
+                <td> Semester: </td>
+                <td> Enrollment: </td>
+                <td> Building: </td>
+            </tr>" ;
+            
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
                 <td> - Code: " . $row["code"]. "</td>            
@@ -105,12 +117,17 @@ if(mysql_num_rows($retval2) > 0) {
 				<td> - Enrollment: " . $row["avg_enroll"]. "</td>
 				<td> - Ta Hours/Students Enrolled: " . $ratio . "</td>
 				<td> - Required: " . $row["isReq"] . "</td>
+                <td> - " . $row["code"]. "</td>
+                <td> - " . $row["title"]. "</td>
+                <td> - " . $row["semester"]. " " . $row["year"]. "</td>
+                <td> - " . $row["enrollment"]. "</td>
+                <td> - " . $row["room_num"]. "</td>
             </tr>" ;
 		}
     }
     echo "</table>";
 } else {
-    echo "<font color = 'red' >0 results\n";
+    echo "<font color = 'red' >0 results for '$str'<br>";
 }
 if(! $retval3)
 {

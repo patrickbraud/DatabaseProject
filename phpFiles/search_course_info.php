@@ -58,22 +58,34 @@ if(mysql_num_rows($retval1) > 0) {
     echo "<br>Searching for Course '$code' .<br><br>";
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'> <caption>Course Information </ caption><br><br>";
+    
+    echo "<tr>
+                <td> Code: </td>
+                <td> Section: </td>
+                <td> Title: </td>
+                <td> Instructor: </td>
+                <td> Enrollment: </td>
+                <td> Semester: </td>
+                <td> Year: </td>
+            </tr>" ;
+    
     while($row = mysql_fetch_array($retval1)) {
         echo "<tr>
-                <td> - Code: " . $row["code"]. "</td>
-				<td> - Section: " . $row["section_num"]. "</td>
-				<td> - Title: " . $row["title"]. "</td>
-				<td> - Instructor: " . $row["instr_name"]. "</td>         
-                <td> - Enrollment: " . $row["enrollment"]. "</td>
-				<td> - Semester: " . $row["semester"]. "</td>
-                <td> - Year: " . $row["year"]. "</td>
+                <td> - " . $row["code"]. "</td>
+				<td> - " . $row["section_num"]. "</td>
+				<td> - " . $row["title"]. "</td>
+				<td> - " . $row["instr_name"]. "</td>         
+                <td> - " . $row["enrollment"]. "</td>
+				<td> - " . $row["semester"]. "</td>
+                <td> - " . $row["year"]. "</td>
             </tr>" ;
     }
     echo "</table>";
 } else {
-    echo "<font color = 'red' >0 results\n";
+    echo "<font color = 'red' >0 results<br>";
 }
-    
+
+  
 mysql_close($conn);
 }
 else

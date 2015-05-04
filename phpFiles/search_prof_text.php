@@ -19,6 +19,9 @@
   	<li><a href="page_business_manager.php">Back</a></li>
 	<br>
 	<?php
+    echo "<br>Professor Textbook Information<br><br>";
+	?>
+	<?php
 	?>
 </ul>
 
@@ -39,7 +42,7 @@ mysql_select_db('projectdb');
 $prof = $_POST['prof'];
 $code = $_POST['code'];
 
-$sql1 = "SELECT instr_name, code, book_title, book_author, book_edition, book_isbn, book_publisher, semester " .
+$sql1 = "SELECT instr_name, code, book_title, book_author, book_edition, book_isbn, book_publisher, semester, year " .
 "FROM courseSectionLink " .
 "WHERE instr_name = '$prof' AND code = '$code';" ;
 $retval = mysql_query( $sql1, $conn );
@@ -53,14 +56,23 @@ if(mysql_num_rows($retval) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:100%'> <caption>Textbooks</ caption><br><br>";
     
+    echo "<tr>
+                <td>Semester: </td>
+                <td>Title: </td>
+                <td>Author: </td>
+				<td>Edition: </td>
+				<td>ISBN: </td>
+                <td>Publisher: </td>
+            </tr>" ;
+    
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
-                <td> - Semester: " . $row["semester"]. "</td>
-                <td> - Title: " . $row["book_title"]. "</td>
-                <td> - Author: " . $row["book_author"]. "</td>
-				<td> - Edition: " . $row["book_edition"]. "</td>
-				<td> - ISBN: " . $row["book_isbn"]. "</td>
-                <td> - Publisher: " . $row["book_publisher"]. "</td>
+                <td> - " . $row["semester"] . " " . $row['year'] . "</td>
+                <td> - " . $row["book_title"]. "</td>
+                <td> - " . $row["book_author"]. "</td>
+				<td> - " . $row["book_edition"]. "</td>
+				<td> - " . $row["book_isbn"]. "</td>
+                <td> - " . $row["book_publisher"]. "</td>
             </tr>" ;
     }
     echo "</table>";
@@ -88,7 +100,7 @@ else
 		</tr>
 		<tr>
 			<td width="100"> </td>
-			<td><input name="update" type="submit" id="update" value="Add"></td>
+			<td><input name="update" type="submit" id="update" value="Search"></td>
 		</tr>
 	</table>
 </form>

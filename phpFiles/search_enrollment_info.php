@@ -66,14 +66,20 @@ if(mysql_num_rows($retval1) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:20%'> <caption>Enrollment by Course</ caption><br><br>";
     $reg_sem[] = [mysql_num_rows($retval1)];
+    
+    echo "<tr>
+			<td>Course: </td>
+			<td>Total Enrollment: </td>
+		</tr>" ;
+    
     while($row = mysql_fetch_array($retval1)) {
 		// keep a copy of all these courses for level calculation
 		$reg_sem[$counter] = $row;
 		$counter = $counter + 1;
 		// output individual course enrollment in a table
 		echo "<tr>
-			<td> - Course: " . $row["code"]. "</td>
-			<td> - Total Enrollment: " . $row["total"]. "</td>
+			<td> - " . $row["code"]. "</td>
+			<td> - " . $row["total"]. "</td>
 		</tr>" ;
     }
     echo "</table>";
@@ -84,11 +90,17 @@ if(mysql_num_rows($retval1) > 0) {
 	}
 	// output the level course enrollment in a table
 	echo "<table id = 't01' style = 'width:20%'><br><caption>Enrollment by Course Level</ caption><br><br>";
+	
+	echo "<tr>
+                <td>Course Level: </td>
+                <td>Total Enrollment:</td>
+            </tr>" ;
+	
 	for($k = 0; $k < 5; $k ++){
 		$level = ($k + 1) * 1000;
 		echo "<tr>
-                <td> - Course Level: " . $level . "</td>
-                <td> - Total Enrollment: " . $level_enroll[$k]. "</td>
+                <td> - " . $level . "</td>
+                <td> - " . $level_enroll[$k]. "</td>
             </tr>" ;
 	}
 } else {

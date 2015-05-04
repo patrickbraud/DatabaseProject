@@ -37,40 +37,48 @@
 		
 		$name = $_POST['name'];
 		$code = $_POST['code'];
+		$semester = $_POST['semester'];
+		$year = $_POST['year'];	
 		$title = $_POST['title'];
 		$author = $_POST['author'];
 		$edition = $_POST['edition'];
 		$isbn = $_POST['isbn'];
 		$publisher = $_POST['publisher'];
 		
-		$sql1 = "UPDATE assign " .
-				"SET book_title = '$title', book_author = '$author', " .
-				"book_edition = '$edition', book_isbn = '$isbn', book_publisher = '$publisher' " . 
-				"WHERE instr_name = '$name' AND " . 
-				"crn = (SELECT has.crn " .
-						"FROM has " .
-						"WHERE has.code = '$code')";
+		$sql0 = "SELECT crn, section_num " . 
+				"FROM coursesectionlink " . 
+				"WHERE instr_name = '$name' " . 
+				"AND code = '$code' " . 
+				"AND semester = '$semester' " . 
+				"AND year = '$year'";
 		
-		$sql2 = "SELECT section.section_num " . 
-				"FROM has, section " . 
-				"WHERE has.crn = section.crn AND has.code = '$code'";
-				
 		mysql_select_db('projectdb');
-		$retval1 = mysql_query( $sql1, $conn );
-		$result = mysql_query( $sql2, $conn );
-		if(! $retval1)
-		{
-  			die('Could not update data: ' . mysql_error());
-		}
-		
-		
-		if (mysql_num_rows($result) > 0 && $retval1 != 0) {
-    		// output data of each row
-    		while($row = mysql_fetch_array($result)){
-        		echo "Textbook has been added to $code Section " . $row['section_num'] . "<br>";
+		$crn_result = mysql_query( $sql0, $conn );
+		if(mysql_num_rows($crn_result) > 0){
+			while($row = mysql_fetch_array($crn_result)){
+				$my_crn = $row['crn'];
+				$my_section = $row['section_num'];
 			}
-		} else {
-    		echo "$name is not teaching $code";
+		
+			$sql1 = "UPDATE assign " .
+					"SET book_title = '$title', book_author = '$author', " .
+					"book_edition = '$edition', book_isbn = '$isbn', book_publisher = '$publisher' " . 
+					"WHERE crn =  '$my_crn'";
+				
+			$retval1 = mysql_query( $sql1, $conn );
+			if(! $retval1)
+			{
+  				die('Could not update data: ' . mysql_error());
+			}
+		
+		
+			if ( $retval1 != 0 && $crn_result != 0) {
+    			// output data of each row
+        			echo "Textbook has been added to $code Section " . $my_section . "<br>";
+			} 
+		}
+		else {
+    		echo "$name is not teaching $code in $semester $year";
 		}
 		
 		mysql_close($conn);
@@ -88,6 +96,14 @@
 		<tr>
 			<td width="120">Course Code</td>
 			<td><input name="code" type="text" id="code"></td>
+		</tr>
+		<tr>
+			<td width="120">Semester</td>
+			<td><input name="semester" type="text" id="semester"></td>
+		</tr>
+		<tr>
+			<td width="120">Year (e.g. 13)</td>
+			<td><input name="year" type="text" id="year"></td>
 		</tr>
 		<tr>
 			<td width="100">Text Title</td>
