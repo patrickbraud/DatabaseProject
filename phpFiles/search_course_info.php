@@ -71,9 +71,10 @@ if(mysql_num_rows($retval1) > 0) {
     }
     echo "</table>";
 } else {
-    echo "<font color = 'red' >0 results\n";
+    echo "<font color = 'red' >0 results<br>";
 }
-    
+
+  
 mysql_close($conn);
 }
 else

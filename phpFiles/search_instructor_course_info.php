@@ -47,6 +47,7 @@ $sql1 = "SELECT code, title, courseSectionLink.semester, courseSectionLink.year,
 		"FROM courseSectionLink, info " . 
 		"WHERE courseSectionLink.year >= '$year' AND instr_name = '$name' AND courseSectionLink.id = info.id; ";
 	   
+
 mysql_select_db('projectdb');
 $retval = mysql_query( $sql1, $conn );
 if(! $retval)
@@ -54,7 +55,7 @@ if(! $retval)
   die('Could not update data: ' . mysql_error());
 }
 if(mysql_num_rows($retval) > 0) {
-    echo "<br>Searching for courses taught by '$name'.<br><br>";
+    
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'> <caption>Courses</ caption><br><br>";
     
@@ -69,14 +70,18 @@ if(mysql_num_rows($retval) > 0) {
     }
     echo "</table>";
 } else {
-    echo "<font color = 'red' >0 results\n";
+    echo "<font color = 'red' >0 results for '$str'<br>";
 }
+
+
     
 mysql_close($conn);
 }
 else
 {
 ?>
+
+ 
 
 <form method="post" action="<?php $_PHP_SELF ?>">
 	<table width="400" border="0" cellspacing="1" cellpadding="2">
