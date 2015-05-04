@@ -83,7 +83,7 @@ else
 		</tr>
 		<tr>
 			<td width="60"> </td>
-			<td><input name="update" type="submit" id="update" value="Add"></td>
+			<td><input name="update" type="submit" id="update" value="Search"></td>
 		</tr>
 	</table>
 </form>
