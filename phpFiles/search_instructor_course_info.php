@@ -70,7 +70,7 @@ if(! $retval)
 if(mysql_num_rows($retval) > 0) {
     
     // output data of each row
-    echo "<table id = 't01' style = 'width:50%'> <caption>Searching for courses taught by $name</ caption><br><br>";
+    echo "<table id = 't01' style = 'width:50%'> <caption>Searching for Courses Taught By $name</ caption><br><br>";
     
     echo "<tr>
                 <td> Code: </td>
@@ -82,11 +82,11 @@ if(mysql_num_rows($retval) > 0) {
             
     while($row = mysql_fetch_array($retval)) {
         echo "<tr>
-                <td> - Code: " . $row["code"]. "</td>            
-				<td> - Title: " . $row["title"]. "</td>
-                <td> - Semester: " . $row["semester"]. " " . $row["year"]. "</td>
-                <td> - Enrollment: " . $row["enrollment"]. "</td>
-                <td> - Building: " . $row["room_num"]. "</td>
+                <td> - " . $row["code"]. "</td>            
+				<td> - " . $row["title"]. "</td>
+                <td> - " . $row["semester"]. " " . $row["year"]. "</td>
+                <td> - " . $row["enrollment"]. "</td>
+                <td> - " . $row["room_num"]. "</td>
 			</tr>" ;
     }
     echo "</table>";
@@ -102,6 +102,13 @@ echo "<br> Undergraduate Courses <br><br>";
 if(mysql_num_rows($retval2) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'><caption></ caption>";
+	echo "<tr>
+                <td> Course: </td>
+                <td> Times Offered: </td>
+                <td> Average TA Hours: </td>
+                <td> Average Enrollment: </td>
+                <td> TA Hours/Students Enrolled: </td>
+            </tr>" ;
     while($row = mysql_fetch_array($retval2)) {
 		if($row["avg_ta"] == 0){
 			$ratio = "N/A";
@@ -111,17 +118,11 @@ if(mysql_num_rows($retval2) > 0) {
 		}
 		if($row["cc"][2] < 5){
         echo "<tr>
-				<td> - Course: " . $row["cc"]. "</td>
-				<td> - Times Offered: " . $row["times"]. "</td>
-				<td> - TA Hours: " . $row["avg_ta"] . "</td>
-				<td> - Enrollment: " . $row["avg_enroll"]. "</td>
-				<td> - Ta Hours/Students Enrolled: " . $ratio . "</td>
-				<td> - Required: " . $row["isReq"] . "</td>
-                <td> - " . $row["code"]. "</td>
-                <td> - " . $row["title"]. "</td>
-                <td> - " . $row["semester"]. " " . $row["year"]. "</td>
-                <td> - " . $row["enrollment"]. "</td>
-                <td> - " . $row["room_num"]. "</td>
+                <td> - " . $row["cc"]. "</td>
+                <td> - " . $row["times"]. "</td>
+                <td> - " . $row["avg_ta"] . "</td>
+                <td> - " . $row["avg_enroll"]. "</td>
+				<td> - " . $ratio. "</td>
             </tr>" ;
 		}
     }
@@ -137,6 +138,13 @@ echo "<br> Graduate Courses <br><br>";
 if(mysql_num_rows($retval3) > 0) {
     // output data of each row
     echo "<table id = 't01' style = 'width:50%'><caption></ caption>";
+	echo "<tr>
+                <td> Course: </td>
+                <td> Times Offered: </td>
+                <td> Average TA Hours: </td>
+                <td> Average Enrollment: </td>
+                <td> TA Hours/Students Enrolled: </td>
+            </tr>" ;
     while($row = mysql_fetch_array($retval3)) {
 		if($row["avg_ta"] == 0){
 			$ratio = "N/A";
@@ -146,12 +154,11 @@ if(mysql_num_rows($retval3) > 0) {
 		}
 		if($row["cc"][2] == 5){
         echo "<tr>
-				<td> - Course: " . $row["cc"]. "</td>
-				<td> - Times Offered: " . $row["times"]. "</td>
-				<td> - TA Hours: " . $row["avg_ta"] . "</td>
-				<td> - Enrollment: " . $row["avg_enroll"]. "</td>
-				<td> - Ta Hours/Students Enrolled: " . $ratio . "</td>
-				<td> - Required: " . $row["isReq"] . "</td>
+                <td> - " . $row["cc"]. "</td>
+                <td> - " . $row["times"]. "</td>
+                <td> - " . $row["avg_ta"] . "</td>
+                <td> - " . $row["avg_enroll"]. "</td>
+				<td> - " . $ratio. "</td>
             </tr>" ;
 		}
     }
