@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2015 at 09:02 AM
+-- Generation Time: May 11, 2015 at 05:45 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,7 +47,7 @@ INSERT INTO `assign` (`crn`, `instr_name`, `ta_name`, `ta_hours`, `new`, `info_i
 (32989, 'Lim', NULL, NULL, NULL, 15, 'Title 8', 'Author 8', 8, 1118, 'Publisher 8'),
 (33241, 'Mengel', NULL, NULL, NULL, 40, NULL, NULL, NULL, NULL, NULL),
 (35559, 'Swaminathan', NULL, NULL, NULL, 23, NULL, NULL, NULL, NULL, NULL),
-(36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'test_title3', 'test_author3', 3, 1113, 'test_publisher3'),
+(36429, 'Lim', 'Elham Hojati', 9, 'yes', 7, 'Computer Organization and Design', 'David Patterson', 5, 1113, 'Morgan Kaufmann'),
 (38473, 'Lopez-Benitez', NULL, NULL, NULL, 44, 'Title 22', 'Author 22', 22, 1133, 'Publisher 22'),
 (39051, 'M Gelfond', NULL, NULL, NULL, 16, 'Title 2', 'Author 2', 2, 1112, 'Publisher 2'),
 (44376, 'Myagmarjav', NULL, NULL, NULL, 17, 'Title 3', 'Author 3', 3, 1113, 'Publisher 3'),
@@ -306,8 +306,8 @@ CREATE TABLE IF NOT EXISTS `professor` (
 --
 
 INSERT INTO `professor` (`name`, `tenure`, `title`, `load_distr`, `request_code`, `request_title`, `request_justif`) VALUES
-('Lim', 'no', 'assistant', 'Spring', 'CS4352', 'Operating Systems', 'Testing with scrolling text please work'),
-('Zhang', 'no', 'Associate', 'NA', 'CS5432', 'My Test Course', 'Testing one more time'),
+('Lim', 'no', 'assistant', 'Fall', 'CS4352', 'Operating Systems', 'Taught this class before.'),
+('Zhang', 'no', 'Associate', 'NA', 'CS4354', 'Databases', 'Area of interest.'),
 ('M Gelfond', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Myagmarjav', 'yes', 'Full', 'NA', NULL, NULL, NULL),
 ('Rushton', 'yes', 'Full', 'NA', NULL, NULL, NULL),
